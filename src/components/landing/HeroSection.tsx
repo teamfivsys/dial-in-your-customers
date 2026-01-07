@@ -24,7 +24,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight"
           >
             Stop Buying{" "}
             <span className="text-gradient-brand">'Leads'</span>.
@@ -40,7 +40,7 @@ const HeroSection = () => {
             className="mt-6 md:mt-8 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
             The first business directory in Kerala where customers contact{" "}
-            <strong className="text-foreground">YOU</strong> directly.
+            <strong className="text-foreground font-black">YOU</strong> directly.
             <br className="hidden md:block" />
             <span className="text-primary font-medium">No Commission</span>.{" "}
             <span className="text-secondary font-medium">No Middlemen</span>.{" "}
@@ -66,11 +66,11 @@ const HeroSection = () => {
                   Get 1 Year Premium Listing for just
                 </p>
                 <div className="mt-2 flex items-baseline justify-center gap-2">
-                  <span className="text-4xl md:text-5xl font-bold text-primary">₹999</span>
+                  <span className="text-4xl md:text-5xl font-black text-primary">₹999</span>
                   <span className="text-lg text-muted-foreground line-through">₹2,999</span>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Valid for first <strong className="text-accent">100 businesses</strong> only
+                <p className="mt-2 text-sm font-semibold text-accent">
+                  Valid for first <strong className="animate-pulse">100 businesses</strong> only
                 </p>
               </div>
             </div>

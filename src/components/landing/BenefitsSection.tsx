@@ -36,7 +36,7 @@ const BenefitsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-foreground">
             What You Get
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">

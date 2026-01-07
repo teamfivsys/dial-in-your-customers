@@ -18,7 +18,7 @@ const FinalCTASection = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-6">
             Don't let your competitors take the{" "}
             <span className="text-gradient-brand">top spots</span>.
           </h2>
