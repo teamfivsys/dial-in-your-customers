@@ -14,7 +14,7 @@ const Header = () => {
           <img 
             src={kdialLogo} 
             alt="KDial Logo" 
-            className="h-10 md:h-12 w-auto"
+            className="h-14 md:h-16 lg:h-20 w-auto"
           />
         </a>
         

@@ -12,7 +12,7 @@ const PricingSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-foreground">
             The Founder's Offer
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ const PricingSection = () => {
             </h3>
             
             <div className="mb-4">
-              <span className="text-4xl md:text-5xl font-bold text-gradient-brand">
+              <span className="text-4xl md:text-5xl font-black text-gradient-brand">
                 ₹999
               </span>
               <span className="text-lg text-foreground"> / Year</span>
@@ -85,9 +85,9 @@ const PricingSection = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="mt-8 md:mt-10 text-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2.5 text-primary font-medium">
-            <AlertTriangle className="h-4 w-4" />
-            <span>Offer closes strictly after the first 100 bookings</span>
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-5 py-2.5 text-primary font-bold text-base md:text-lg">
+            <AlertTriangle className="h-5 w-5" />
+            <span>Offer closes strictly after the first <strong className="animate-pulse">100</strong> bookings</span>
           </div>
         </motion.div>
       </div>

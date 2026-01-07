@@ -24,7 +24,7 @@ const ComparisonSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-foreground">
             The Problem vs.{" "}
             <span className="text-secondary">The KDial Way</span>
           </h2>
