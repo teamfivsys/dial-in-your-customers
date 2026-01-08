@@ -6,7 +6,7 @@ const HeroSection = () => {
   const whatsappMessage = encodeURIComponent(
     "Hi KDial Team! I want to lock my ₹999 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
   );
-  const whatsappLink = `https://wa.me/919876543210?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
   return (
     <section className="relative overflow-hidden gradient-hero py-16 md:py-24 lg:py-32">
