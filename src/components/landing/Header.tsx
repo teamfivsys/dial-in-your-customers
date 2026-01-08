@@ -9,12 +9,12 @@ const Header = () => {
       transition={{ duration: 0.5 }}
       className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-sm border-b border-border/50"
     >
-      <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-20 md:h-24 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center gap-2">
           <img 
             src={kdialLogo} 
             alt="KDial Logo" 
-            className="h-14 md:h-16 lg:h-20 w-auto"
+            className="h-20 md:h-24 lg:h-28 w-auto"
           />
         </a>
         
