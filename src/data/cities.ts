@@ -51,16 +51,6 @@ export const keralaCities: CityData[] = [
     businessTypes: ["Jewelry Shops", "Temple Services", "Cultural Academies", "Textile Shops", "Catering"]
   },
   {
-    slug: "kannur",
-    name: "Kannur",
-    malayalam: "കണ്ണൂർ",
-    district: "Kannur",
-    description: "Kannur, known as the land of looms and lores, is famous for its handloom industry and Theyyam performances. The city has a growing business ecosystem with emerging opportunities in tourism and traditional crafts.",
-    population: "1.6 million",
-    highlights: ["Handloom Industry", "Theyyam Tourism", "Beach Destinations", "Spice Trade"],
-    businessTypes: ["Handloom Shops", "Tourism Services", "Spice Exporters", "Restaurants", "Traditional Crafts"]
-  },
-  {
     slug: "malappuram",
     name: "Malappuram",
     malayalam: "മലപ്പുറം",
@@ -81,14 +71,24 @@ export const keralaCities: CityData[] = [
     businessTypes: ["Rice Mills", "Agricultural Services", "Music Schools", "Restaurants", "Traditional Shops"]
   },
   {
-    slug: "kottayam",
-    name: "Kottayam",
-    malayalam: "കോട്ടയം",
-    district: "Kottayam",
-    description: "Kottayam is Kerala's first fully literate city and a major center for rubber production. The city has a strong educational infrastructure and is known for its contribution to Malayalam literature and journalism.",
-    population: "1.3 million",
-    highlights: ["100% Literacy", "Rubber Capital", "Publishing Hub", "Education Center"],
-    businessTypes: ["Educational Institutions", "Publishing Houses", "Rubber Dealers", "Hospitals", "Tourism"]
+    slug: "kannur",
+    name: "Kannur",
+    malayalam: "കണ്ണൂർ",
+    district: "Kannur",
+    description: "Kannur, known as the land of looms and lores, is famous for its handloom industry and Theyyam performances. The city has a growing business ecosystem with emerging opportunities in tourism and traditional crafts.",
+    population: "1.6 million",
+    highlights: ["Handloom Industry", "Theyyam Tourism", "Beach Destinations", "Spice Trade"],
+    businessTypes: ["Handloom Shops", "Tourism Services", "Spice Exporters", "Restaurants", "Traditional Crafts"]
+  },
+  {
+    slug: "kollam",
+    name: "Kollam",
+    malayalam: "കൊല്ലം",
+    district: "Kollam",
+    description: "Kollam (Quilon), one of the oldest ports in the Arabian Sea, has a rich trading history. Today, the city is known for its cashew industry, backwater tourism, and traditional industries.",
+    population: "1.1 million",
+    highlights: ["Ancient Port City", "Cashew Capital", "Backwater Tourism", "Traditional Industries"],
+    businessTypes: ["Cashew Processing", "Tourism Services", "Fishing Industry", "Restaurants", "Traditional Crafts"]
   },
   {
     slug: "alappuzha",
@@ -101,14 +101,54 @@ export const keralaCities: CityData[] = [
     businessTypes: ["Houseboats", "Tourism Services", "Coir Products", "Restaurants", "Homestays"]
   },
   {
-    slug: "kollam",
-    name: "Kollam",
-    malayalam: "കൊല്ലം",
-    district: "Kollam",
-    description: "Kollam (Quilon), one of the oldest ports in the Arabian Sea, has a rich trading history. Today, the city is known for its cashew industry, backwater tourism, and traditional industries.",
+    slug: "kottayam",
+    name: "Kottayam",
+    malayalam: "കോട്ടയം",
+    district: "Kottayam",
+    description: "Kottayam is Kerala's first fully literate city and a major center for rubber production. The city has a strong educational infrastructure and is known for its contribution to Malayalam literature and journalism.",
+    population: "1.3 million",
+    highlights: ["100% Literacy", "Rubber Capital", "Publishing Hub", "Education Center"],
+    businessTypes: ["Educational Institutions", "Publishing Houses", "Rubber Dealers", "Hospitals", "Tourism"]
+  },
+  {
+    slug: "idukki",
+    name: "Idukki",
+    malayalam: "ഇടുക്കി",
+    district: "Idukki",
+    description: "Idukki, the spice garden of Kerala, is known for its hill stations, wildlife sanctuaries, and cardamom plantations. The district offers unique eco-tourism opportunities and is home to the famous Idukki Dam.",
     population: "1.1 million",
-    highlights: ["Ancient Port City", "Cashew Capital", "Backwater Tourism", "Traditional Industries"],
-    businessTypes: ["Cashew Processing", "Tourism Services", "Fishing Industry", "Restaurants", "Traditional Crafts"]
+    highlights: ["Spice Garden", "Hill Stations", "Wildlife Tourism", "Cardamom Capital"],
+    businessTypes: ["Spice Exporters", "Resorts", "Homestays", "Tea Estates", "Eco-Tourism"]
+  },
+  {
+    slug: "wayanad",
+    name: "Wayanad",
+    malayalam: "വയനാട്",
+    district: "Wayanad",
+    description: "Wayanad, Kerala's hill station paradise, is famous for its lush forests, wildlife, and tribal heritage. The district is a top destination for eco-tourism and adventure activities.",
+    population: "0.8 million",
+    highlights: ["Hill Station Paradise", "Wildlife Sanctuary", "Tribal Heritage", "Adventure Tourism"],
+    businessTypes: ["Resorts", "Homestays", "Plantation Tours", "Adventure Sports", "Organic Farming"]
+  },
+  {
+    slug: "pathanamthitta",
+    name: "Pathanamthitta",
+    malayalam: "പത്തനംതിട്ട",
+    district: "Pathanamthitta",
+    description: "Pathanamthitta, home to the famous Sabarimala Temple, is a major pilgrimage destination. The district also offers beautiful river valleys, forests, and traditional Christian churches.",
+    population: "1.2 million",
+    highlights: ["Sabarimala Temple", "Pilgrimage Hub", "River Valleys", "Religious Tourism"],
+    businessTypes: ["Pilgrimage Services", "Hotels", "Restaurants", "Religious Shops", "Tourism Services"]
+  },
+  {
+    slug: "kasaragod",
+    name: "Kasaragod",
+    malayalam: "കാസർഗോഡ്",
+    district: "Kasaragod",
+    description: "Kasaragod, the land of gods and forts, is Kerala's northernmost district. Known for its diverse culture, ancient forts like Bekal, and beautiful beaches, the district has growing business potential.",
+    population: "1.3 million",
+    highlights: ["Bekal Fort", "Beach Tourism", "Multi-lingual Culture", "Coir Industry"],
+    businessTypes: ["Tourism Services", "Coir Products", "Restaurants", "Hotels", "Traditional Crafts"]
   }
 ];
 
