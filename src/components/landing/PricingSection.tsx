@@ -1,8 +1,10 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { AlertTriangle, Tag } from "lucide-react";
 import { useState } from "react";
+import { CountdownTimer } from "@/components/CountdownTimer";
 
 const PricingSection = () => {
+  const launchDate = new Date("2025-03-15T23:59:59+05:30");
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -130,9 +132,21 @@ const PricingSection = () => {
                 <span className="text-lg text-foreground"> / Year</span>
               </div>
 
-              <p className="text-sm text-secondary font-medium">
+              <p className="text-sm text-secondary font-medium mb-4">
                 Save ₹2,000 Today
               </p>
+
+              <div className="mt-4 pt-4 border-t border-border/30">
+                <p className="text-xs text-muted-foreground mb-2">
+                  Price increases to ₹2,999 on March 16th
+                </p>
+                <CountdownTimer
+                  targetDate={launchDate}
+                  compact={true}
+                  showIcon={false}
+                  className="justify-center"
+                />
+              </div>
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary" />

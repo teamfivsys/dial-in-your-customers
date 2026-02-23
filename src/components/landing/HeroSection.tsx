@@ -2,9 +2,12 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Lock, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingShapes } from "@/components/3d/FloatingShapes";
+import { CountdownTimer } from "@/components/CountdownTimer";
 import { Suspense, useEffect } from "react";
 
 const HeroSection = () => {
+  const launchDate = new Date("2025-03-15T23:59:59+05:30");
+
   const whatsappMessage = encodeURIComponent(
     "Hi KDial Team! I want to lock my ₹999 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
   );
@@ -134,6 +137,15 @@ const HeroSection = () => {
 
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary opacity-50" />
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-8 md:mt-10"
+          >
+            <CountdownTimer targetDate={launchDate} className="max-w-2xl mx-auto" />
           </motion.div>
 
           <motion.div
