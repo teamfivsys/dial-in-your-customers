@@ -37,9 +37,9 @@ const HeroSection = () => {
         <FloatingShapes />
       </Suspense>
 
-      <div className="absolute inset-0 gradient-mesh -z-10" />
+      <div className="absolute inset-0 gradient-mesh -z-20" />
 
-      <div className="absolute inset-0 opacity-[0.02] -z-10">
+      <div className="absolute inset-0 opacity-[0.02] -z-20">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L30 25 L25 15 Z' fill='%23E63946' fill-opacity='0.4'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
@@ -87,10 +87,10 @@ const HeroSection = () => {
             style={{ rotateX, rotateY, transformPerspective: 1000 }}
             className="mt-10 md:mt-12 inline-block w-full max-w-md"
           >
-            <div className="relative rounded-2xl glass bg-card/80 backdrop-blur-xl p-6 md:p-8 shadow-elevated border-2 border-accent/30 overflow-hidden group hover:shadow-2xl transition-shadow duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative rounded-2xl glass bg-card/80 backdrop-blur-xl p-6 md:p-8 shadow-elevated border-2 border-accent/30 overflow-visible group hover:shadow-2xl transition-shadow duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
 
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-50">
                 <motion.span
                   animate={{
                     boxShadow: [
@@ -100,7 +100,7 @@ const HeroSection = () => {
                     ],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="inline-flex items-center gap-1.5 rounded-full gradient-brand px-4 py-1.5 text-sm font-semibold text-primary-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-full gradient-brand px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-lg"
                 >
                   <Sparkles className="w-4 h-4" />
                   Pre-Launch Offer
