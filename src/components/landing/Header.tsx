@@ -19,7 +19,8 @@ const Header = () => {
         >
           <img
             src={kdialLogo}
-            alt="KDial Logo"
+            alt="KDial - Kerala Business Directory Logo - Premium Business Listings in Kochi, Ernakulam, Trivandrum, Calicut"
+            title="KDial - Kerala's Best Business Directory"
             className="h-20 md:h-24 lg:h-28 w-auto"
           />
         </motion.a>

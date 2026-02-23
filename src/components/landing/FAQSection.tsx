@@ -66,10 +66,10 @@ const FAQSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-4">
-            Frequently Asked Questions
+            KDial Kerala Business Directory – Frequently Asked Questions
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Got questions? We've got answers.
+          <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto">
+            Common questions about KDial's business listing service in Kerala. Learn about pricing, features, payment methods, and how Kerala businesses benefit from verified premium listings in Ernakulam, Kochi, and across all districts.
           </p>
         </motion.div>
 

@@ -55,29 +55,34 @@ const HeroSection = () => {
             className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight"
             style={{ textShadow: '0 2px 10px rgba(0,0,0,0.1)' }}
           >
-            Stop Buying{" "}
+            Kerala's Best Business Directory – Stop Buying{" "}
             <span className="text-gradient-brand inline-flex items-center gap-2">
               'Leads'
             </span>
-            .
-            <br />
-            Start Getting{" "}
-            <span className="text-secondary">Customers</span>.
+            , Start Getting Real{" "}
+            <span className="text-secondary">Customers</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-6 md:mt-8 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="mt-6 md:mt-8 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             style={{ textShadow: '0 1px 5px rgba(0,0,0,0.1)' }}
           >
-            The first business directory in Kerala where customers contact{" "}
-            <strong className="text-foreground font-black">YOU</strong> directly.
-            <br className="hidden md:block" />
+            <strong className="text-foreground font-semibold">KDial is the first business directory in Kerala</strong> where customers contact{" "}
+            <strong className="text-foreground font-black">YOU</strong> directly. Trusted by businesses across Kochi, Trivandrum, Calicut, Thrissur, and all 14 districts of Kerala.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-4 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
+          >
             <span className="text-primary font-medium">No Commission</span>.{" "}
             <span className="text-secondary font-medium">No Middlemen</span>.{" "}
-            <span className="text-accent font-medium">No Spam Calls</span>.
+            <span className="text-accent font-medium">No Spam Calls</span>. Just direct customer connections for your Kerala-based business.
           </motion.p>
 
           <motion.div

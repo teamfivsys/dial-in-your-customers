@@ -85,8 +85,8 @@ const BenefitCard = ({ benefit, index }: { benefit: typeof benefits[0]; index: n
           <Icon className="h-7 w-7" />
         </motion.div>
 
-        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-          {index + 1}. {benefit.title}
+        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+          {benefit.title}
         </h3>
 
         <p className="text-muted-foreground leading-relaxed">
@@ -121,10 +121,10 @@ const BenefitsSection = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-4xl font-extrabold text-foreground"
           >
-            What You Get
+            Premium Business Listing Features for Kerala Businesses
           </motion.h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to stand out and get more customers
+            KDial offers Kerala businesses a professional digital profile with analytics dashboard, trust badges, and direct customer connections. Stand out in Ernakulam, Kochi, Trivandrum, and across all Kerala districts with verified premium listings.
           </p>
         </motion.div>
 

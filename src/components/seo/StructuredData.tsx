@@ -99,6 +99,36 @@ export const localBusinessSchema = {
     "addressRegion": "Kerala",
     "addressCountry": "IN"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "10.8505",
+    "longitude": "76.2711"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Kochi",
+      "alternateName": "Cochin"
+    },
+    {
+      "@type": "City",
+      "name": "Thiruvananthapuram",
+      "alternateName": "Trivandrum"
+    },
+    {
+      "@type": "City",
+      "name": "Kozhikode",
+      "alternateName": "Calicut"
+    },
+    {
+      "@type": "City",
+      "name": "Thrissur"
+    },
+    {
+      "@type": "City",
+      "name": "Ernakulam"
+    }
+  ],
   "priceRange": "₹₹"
 };
 
@@ -133,6 +163,151 @@ export const businessDirectorySchema = {
     {
       "@type": "City",
       "name": "Thrissur"
+    }
+  ]
+};
+
+// HowTo Schema for Registration Process
+export const howToRegisterSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Register Your Business on KDial",
+  "description": "Simple 4-step process to register your Kerala business on KDial and get a premium listing",
+  "totalTime": "PT5M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Click the Registration Button",
+      "text": "Click the 'Lock My Price @ ₹999 via WhatsApp' button on the KDial homepage",
+      "url": "https://kdial.in/#register"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Send WhatsApp Message",
+      "text": "Send the pre-filled WhatsApp message to KDial's business team",
+      "url": "https://wa.me/917356137106"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Complete Payment",
+      "text": "Pay ₹999 via UPI using GPay, PhonePe, Paytm, or any bank UPI app",
+      "itemListElement": [{
+        "@type": "HowToDirection",
+        "text": "Payment methods accepted: Google Pay, PhonePe, Paytm, Bank UPI"
+      }]
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Go Live on Launch Day",
+      "text": "Your verified premium business listing will go live when KDial launches in Kerala",
+      "url": "https://kdial.in"
+    }
+  ]
+};
+
+// Offer Schema for Pre-Launch Discount
+export const prelaunchOfferSchema = {
+  "@context": "https://schema.org",
+  "@type": "Offer",
+  "name": "KDial Pre-Launch Business Listing Offer",
+  "description": "Get 1 year premium business listing in Kerala for just ₹999 - limited to first 100 businesses",
+  "price": "999",
+  "priceCurrency": "INR",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/LimitedAvailability",
+  "availableAtOrFrom": {
+    "@type": "Place",
+    "name": "Kerala, India"
+  },
+  "eligibleRegion": {
+    "@type": "State",
+    "name": "Kerala",
+    "containedInPlace": {
+      "@type": "Country",
+      "name": "India"
+    }
+  },
+  "itemOffered": {
+    "@type": "Service",
+    "name": "Premium Business Listing",
+    "description": "1 year verified premium business listing on KDial Kerala Business Directory"
+  },
+  "seller": {
+    "@type": "Organization",
+    "name": "KDial"
+  }
+};
+
+// Service Schema for Business Listing
+export const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Business Directory Listing",
+  "name": "KDial Premium Business Listing",
+  "description": "Premium business listing service for Kerala businesses with direct customer connections, analytics dashboard, and verified status",
+  "provider": {
+    "@type": "Organization",
+    "name": "KDial"
+  },
+  "areaServed": {
+    "@type": "State",
+    "name": "Kerala"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Business Listing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Premium Digital Business Profile"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Analytics Dashboard"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Verified Business Badge"
+        }
+      }
+    ]
+  }
+};
+
+// BreadcrumbList Schema
+export const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://kdial.in"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kerala Business Directory",
+      "item": "https://kdial.in/#directory"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Register Business",
+      "item": "https://kdial.in/#register"
     }
   ]
 };

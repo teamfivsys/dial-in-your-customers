@@ -4,6 +4,7 @@ import ComparisonSection from "@/components/landing/ComparisonSection";
 import BenefitsSection from "@/components/landing/BenefitsSection";
 import PricingSection from "@/components/landing/PricingSection";
 import ProcessSection from "@/components/landing/ProcessSection";
+import AEOContent from "@/components/landing/AEOContent";
 import FAQSection from "@/components/landing/FAQSection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import Footer from "@/components/landing/Footer";
@@ -14,6 +15,10 @@ import StructuredData, {
   productSchema,
   localBusinessSchema,
   businessDirectorySchema,
+  howToRegisterSchema,
+  prelaunchOfferSchema,
+  serviceSchema,
+  breadcrumbSchema,
 } from "@/components/seo/StructuredData";
 import FAQSchema, { aeoFaqs } from "@/components/seo/FAQSchema";
 
@@ -28,6 +33,10 @@ const Index = () => {
           productSchema,
           localBusinessSchema,
           businessDirectorySchema,
+          howToRegisterSchema,
+          prelaunchOfferSchema,
+          serviceSchema,
+          breadcrumbSchema,
         ]}
       />
       <FAQSchema faqs={aeoFaqs} />
@@ -39,6 +48,7 @@ const Index = () => {
         <BenefitsSection />
         <PricingSection />
         <ProcessSection />
+        <AEOContent />
         <FAQSection />
         <FinalCTASection />
       </main>

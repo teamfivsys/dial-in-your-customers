@@ -40,10 +40,10 @@ const ProcessSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-2xl md:text-4xl font-extrabold text-foreground">
-            How To Claim Your Spot
+            How to Register Your Kerala Business on KDial in 4 Simple Steps
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Simple 4-step process to secure your listing
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+            Easy online business registration process for Kerala businesses. Register your business in Ernakulam, Kochi, Trivandrum, Calicut, or anywhere in Kerala through WhatsApp payment in just 4 simple steps and secure your premium listing today.
           </p>
         </motion.div>
 

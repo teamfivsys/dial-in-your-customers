@@ -25,9 +25,11 @@ const ComparisonSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-2xl md:text-4xl font-extrabold text-foreground">
-            The Problem vs.{" "}
-            <span className="text-secondary">The KDial Way</span>
+            Why Kerala Businesses Choose KDial Over JustDial
           </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+            Unlike traditional business directories in Kerala, KDial connects customers directly to your business without middlemen, commission fees, or lead selling. Get genuine customers from Kochi, Ernakulam, Calicut, Trivandrum, and all Kerala cities.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
@@ -43,8 +45,8 @@ const ComparisonSection = () => {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                 <X className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">
-                The Old Way <span className="text-muted-foreground">(Justdial & Others)</span>
+              <h3 className="text-xl font-bold text-foreground">
+                Traditional Business Directories <span className="text-muted-foreground">(JustDial & Others)</span>
               </h3>
             </div>
             
@@ -85,8 +87,8 @@ const ComparisonSection = () => {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10">
                 <Check className="h-5 w-5 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">
-                The KDial Way
+              <h3 className="text-xl font-bold text-foreground">
+                The KDial Advantage for Kerala Businesses
               </h3>
             </div>
             
