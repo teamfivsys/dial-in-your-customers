@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import kdialLogo from "@/assets/kdial-logo.png";
+import kdialLogo from "@/assets/WhatsApp_Image_2026-02-23_at_12.29.15_PM-removebg-preview.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const Header = () => {

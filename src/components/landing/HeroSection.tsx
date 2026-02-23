@@ -37,22 +37,23 @@ const HeroSection = () => {
         <FloatingShapes />
       </Suspense>
 
-      <div className="absolute inset-0 gradient-mesh" />
+      <div className="absolute inset-0 gradient-mesh -z-10" />
 
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.02] -z-10">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L30 25 L25 15 Z' fill='%23E63946' fill-opacity='0.4'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
         }} />
       </div>
 
-      <div className="container relative mx-auto px-4 md:px-6">
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.1)' }}
           >
             Stop Buying{" "}
             <span className="text-gradient-brand inline-flex items-center gap-2">
@@ -69,6 +70,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mt-6 md:mt-8 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            style={{ textShadow: '0 1px 5px rgba(0,0,0,0.1)' }}
           >
             The first business directory in Kerala where customers contact{" "}
             <strong className="text-foreground font-black">YOU</strong> directly.
