@@ -66,17 +66,7 @@ export const CountdownTimer = ({
   };
 
   if (isExpired) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className={`glass rounded-xl p-4 border border-border/50 ${className}`}
-      >
-        <p className="text-sm font-medium text-muted-foreground text-center">
-          Offer Expired - Standard Pricing Applies
-        </p>
-      </motion.div>
-    );
+    return null;
   }
 
   if (compact) {
