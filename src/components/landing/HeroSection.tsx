@@ -6,7 +6,7 @@ import { CountdownTimer } from "@/components/CountdownTimer";
 import { Suspense, useEffect } from "react";
 
 const HeroSection = () => {
-  const launchDate = new Date("2025-03-15T23:59:59+05:30");
+  const launchDate = new Date("2026-03-15T23:59:59+05:30");
 
   const whatsappMessage = encodeURIComponent(
     "Hi KDial Team! I want to lock my ₹999 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
