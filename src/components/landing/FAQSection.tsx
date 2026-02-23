@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Plus } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -51,8 +52,12 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute bottom-0 left-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse-slow" />
+      </div>
+
+      <div className="container relative mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,9 +91,11 @@ const FAQSection = () => {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="bg-card border border-border rounded-xl px-6 shadow-sm"
+                  className="group glass bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl px-6 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 overflow-hidden relative"
                 >
-                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5 group-hover:text-primary transition-colors duration-300">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed pb-5">

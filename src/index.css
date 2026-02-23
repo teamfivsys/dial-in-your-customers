@@ -1,12 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "@fontsource/poppins/400.css";
 @import "@fontsource/poppins/500.css";
 @import "@fontsource/poppins/600.css";
 @import "@fontsource/poppins/700.css";
 @import "@fontsource/poppins/800.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -81,12 +81,19 @@
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 210 85% 50%;
+
+    --shadow-card: 0 4px 20px -4px hsla(0, 0%, 0%, 0.3);
+    --shadow-cta: 0 8px 24px -8px hsla(142, 70%, 49%, 0.5);
+    --shadow-elevated: 0 12px 40px -12px hsla(0, 0%, 0%, 0.4);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
   }
 
   html {
@@ -96,6 +103,15 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Poppins', system-ui, sans-serif;
+    background-image:
+      radial-gradient(at 0% 0%, hsla(210, 85%, 98%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(0, 84%, 98%, 0.2) 0px, transparent 50%);
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(at 0% 0%, hsla(210, 85%, 15%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(0, 84%, 15%, 0.2) 0px, transparent 50%);
   }
 }
 
@@ -141,12 +157,64 @@
     animation: pulse 3s ease-in-out infinite;
   }
 
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .gradient-mesh {
+    background-image:
+      radial-gradient(at 40% 20%, hsla(210, 85%, 70%, 0.2) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(0, 84%, 70%, 0.15) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(142, 70%, 70%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(25, 95%, 70%, 0.15) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(210, 85%, 70%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(0, 84%, 70%, 0.1) 0px, transparent 50%);
+  }
+
+  .dark .gradient-mesh {
+    background-image:
+      radial-gradient(at 40% 20%, hsla(210, 85%, 30%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(0, 84%, 30%, 0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(142, 70%, 30%, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(25, 95%, 30%, 0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(210, 85%, 30%, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(0, 84%, 30%, 0.15) 0px, transparent 50%);
+  }
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0);
     }
     50% {
       transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
     }
   }
 }
