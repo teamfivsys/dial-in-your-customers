@@ -74,7 +74,7 @@ export const productSchema = {
   },
   "offers": {
     "@type": "Offer",
-    "price": "999",
+    "price": "501",
     "priceCurrency": "INR",
     "priceValidUntil": "2025-12-31",
     "availability": "https://schema.org/LimitedAvailability",
@@ -179,7 +179,7 @@ export const howToRegisterSchema = {
       "@type": "HowToStep",
       "position": 1,
       "name": "Click the Registration Button",
-      "text": "Click the 'Lock My Price @ ₹999 via WhatsApp' button on the KDial homepage",
+      "text": "Click the 'Lock My Price @ ₹501 via WhatsApp' button on the KDial homepage",
       "url": "https://kdial.in/#register"
     },
     {
@@ -193,7 +193,7 @@ export const howToRegisterSchema = {
       "@type": "HowToStep",
       "position": 3,
       "name": "Complete Payment",
-      "text": "Pay ₹999 via UPI using GPay, PhonePe, Paytm, or any bank UPI app",
+      "text": "Pay ₹501 via UPI using GPay, PhonePe, Paytm, or any bank UPI app",
       "itemListElement": [{
         "@type": "HowToDirection",
         "text": "Payment methods accepted: Google Pay, PhonePe, Paytm, Bank UPI"
@@ -214,8 +214,8 @@ export const prelaunchOfferSchema = {
   "@context": "https://schema.org",
   "@type": "Offer",
   "name": "KDial Pre-Launch Business Listing Offer",
-  "description": "Get 1 year premium business listing in Kerala for just ₹999 - limited to first 100 businesses",
-  "price": "999",
+  "description": "Get 1 year premium business listing in Kerala for just ₹501 - limited to first 100 businesses",
+  "price": "501",
   "priceCurrency": "INR",
   "priceValidUntil": "2026-12-31",
   "availability": "https://schema.org/LimitedAvailability",

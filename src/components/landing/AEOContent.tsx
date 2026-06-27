@@ -68,7 +68,7 @@ const AEOContent = () => {
               How Much Does KDial Business Listing Cost?
             </h2>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              The standard price for KDial business listing is ₹2,999 per year. However, during the pre-launch period, Kerala businesses can register for just <strong className="text-primary">₹999 per year</strong> - a limited-time offer for the first 100 businesses only. This one-time annual fee includes premium digital profile, analytics dashboard, verified badge, and direct customer connections with zero commission fees.
+              The standard price for KDial business listing is ₹2,999 per year. However, during the pre-launch period, Kerala businesses can register for just <strong className="text-primary">₹501 per year</strong> - a limited-time offer for the first 100 businesses only. This one-time annual fee includes premium digital profile, analytics dashboard, verified badge, and direct customer connections with zero commission fees.
             </p>
           </div>
 

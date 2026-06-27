@@ -51,7 +51,7 @@ When someone searches "best restaurant in Kochi" or "doctors in Calicut," will t
 
 ## The KDIAL Advantage
 
-KDIAL is Kerala's first premium business directory. For just ₹999/year, you get:
+KDIAL is Kerala's first premium business directory. For just ₹501/year, you get:
 - Verified business listing
 - Direct customer calls and WhatsApp
 - No spam, no competitor ads
@@ -79,7 +79,7 @@ If you're a business owner in Kerala, you've probably considered listing on Just
 
 | Feature | Justdial | KDIAL |
 |---------|----------|-------|
-| Listing Cost | Free (with paid options) | ₹999/year |
+| Listing Cost | Free (with paid options) | ₹501/year |
 | Verification | Minimal | Mandatory |
 | Competitor Ads | Yes, on your listing | No |
 | Lead Quality | Mixed | High quality |
@@ -99,7 +99,7 @@ Justdial sells your customer inquiries to competitors. When a customer searches 
 ## Why Kerala Businesses Choose KDIAL
 
 ### Premium-Only Model
-Every KDIAL business pays ₹999/year. This ensures:
+Every KDIAL business pays ₹501/year. This ensures:
 - Only serious businesses join
 - No spam or fake listings
 - Higher customer trust
@@ -114,7 +114,7 @@ KDIAL is built for Kerala. We understand local business needs, Malayalam-speakin
 
 If you want free visibility in a crowded, spam-filled directory – use Justdial. If you want quality customers, direct contact, and trust – choose KDIAL.
 
-**Pre-book your KDIAL listing at ₹999/year** – before the Founder Slots run out.
+**Pre-book your KDIAL listing at ₹501/year** – before the Founder Slots run out.
     `,
     date: "2025-01-08",
     author: "KDIAL Team",
@@ -154,7 +154,7 @@ Think about it from the customer's perspective:
 
 **Premium Directory (KDIAL):**
 - Curated, verified listings
-- Businesses invested ₹999 – they're serious
+- Businesses invested ₹501 – they're serious
 - No spam, no fake listings
 - Direct contact with verified businesses
 
@@ -168,7 +168,7 @@ Kerala businesses on premium listings report:
 
 ## The KDIAL Difference
 
-At ₹999/year (that's ₹83/month), KDIAL offers:
+At ₹501/year (that's ₹83/month), KDIAL offers:
 
 ✅ Verified listing status
 ✅ Direct customer contact
@@ -182,7 +182,7 @@ At ₹999/year (that's ₹83/month), KDIAL offers:
 
 Stop competing with spam. Join Kerala's premium business directory.
 
-**Pre-book your KDIAL Founder Slot – only 100 available at ₹999.**
+**Pre-book your KDIAL Founder Slot – only 100 available at ₹501.**
     `,
     date: "2025-01-05",
     author: "KDIAL Team",
@@ -308,7 +308,7 @@ In Kerala, recommendations matter. Encourage referrals:
 
 ## 5. Premium Directory Listing
 
-A KDIAL listing costs ₹999/year but delivers:
+A KDIAL listing costs ₹501/year but delivers:
 - Verified business badge
 - Direct WhatsApp button
 - Local search visibility

@@ -29,9 +29,9 @@ const faqs = [
       "Simple! Click the WhatsApp button, send us the pre-filled message, and our team will respond with UPI payment details. You can pay via any UPI app – GPay, PhonePe, Paytm, or your bank app.",
   },
   {
-    question: "Is the ₹999 a one-time payment or recurring?",
+    question: "Is the ₹501 a one-time payment or recurring?",
     answer:
-      "It's an annual fee. The ₹999 pre-booking price covers your premium listing for one full year from launch. After that, you can renew at the regular annual rate.",
+      "It's an annual fee. The ₹501 pre-booking price covers your premium listing for one full year from launch. After that, you can renew at the regular annual rate.",
   },
   {
     question: "What if I pay now but KDial doesn't launch?",

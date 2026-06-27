@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const FinalCTASection = () => {
   const whatsappMessage = encodeURIComponent(
-    "Hi KDial Team! I want to lock my ₹999 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
+    "Hi KDial Team! I want to lock my ₹501 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
   );
   const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
@@ -35,7 +35,7 @@ const FinalCTASection = () => {
           >
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <Lock className="h-5 w-5" />
-              Secure My ₹999 Listing Now
+              Secure My ₹501 Listing Now
               <MessageCircle className="h-5 w-5" />
             </a>
           </Button>

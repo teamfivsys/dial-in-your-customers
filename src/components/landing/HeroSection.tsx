@@ -9,7 +9,7 @@ const HeroSection = () => {
   const launchDate = new Date("2026-03-15T23:59:59+05:30");
 
   const whatsappMessage = encodeURIComponent(
-    "Hi KDial Team! I want to lock my ₹999 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
+    "Hi KDial Team! I want to lock my ₹501 Pre-Booking Offer for a Premium Listing. Please send me the payment details."
   );
   const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
@@ -126,7 +126,7 @@ const HeroSection = () => {
                     transition={{ duration: 2, repeat: Infinity }}
                     className="text-4xl md:text-5xl font-black text-primary"
                   >
-                    ₹999
+                    ₹501
                   </motion.span>
                   <span className="text-lg text-muted-foreground line-through">₹2,999</span>
                 </div>
@@ -173,7 +173,7 @@ const HeroSection = () => {
                   }}
                 />
                 <Lock className="h-5 w-5 relative z-10" />
-                <span className="relative z-10">Lock My Price @ ₹999 via WhatsApp</span>
+                <span className="relative z-10">Lock My Price @ ₹501 via WhatsApp</span>
                 <MessageCircle className="h-5 w-5 relative z-10" />
               </a>
             </Button>
