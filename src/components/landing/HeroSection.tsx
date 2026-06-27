@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 
 const NAVY = "#0A1730";
@@ -14,12 +14,12 @@ const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
 const tile = "rounded-3xl border border-white/5 transition-transform duration-300";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   }),
 };
 
