@@ -47,7 +47,7 @@ const PricingSection = () => {
             Affordable Business Listing Pricing for Kerala – Pre-Launch Offer
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-            Limited-time pre-booking offer for Kerala businesses at just ₹999 per year. KDial is launching soon in Ernakulam, Kochi with plans to expand across Kerala. Secure your premium business listing before prices increase.
+            Limited-time pre-booking offer for Kerala businesses at just ₹501 per year. KDial is launching soon in Ernakulam, Kochi with plans to expand across Kerala. Secure your premium business listing before prices increase.
           </p>
         </motion.div>
 
@@ -127,13 +127,13 @@ const PricingSection = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                   className="text-4xl md:text-5xl font-black text-gradient-brand"
                 >
-                  ₹999
+                  ₹501
                 </motion.span>
                 <span className="text-lg text-foreground"> / Year</span>
               </div>
 
               <p className="text-sm text-secondary font-medium mb-4">
-                Save ₹2,000 Today
+                Save ₹2,498 Today
               </p>
 
               <div className="mt-4 pt-4 border-t border-border/30">

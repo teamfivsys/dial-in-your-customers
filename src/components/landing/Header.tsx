@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import kdialLogo from "@/assets/WhatsApp_Image_2026-02-23_at_12.29.15_PM-removebg-preview.png";
+import kdialLogoAsset from "@/assets/kdial-logo-new.png.asset.json";
+const kdialLogo = kdialLogoAsset.url;
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CountdownTimer } from "@/components/CountdownTimer";
 

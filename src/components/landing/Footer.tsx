@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import kdialLogo from "@/assets/kdial-logo.png";
+import kdialLogoAsset from "@/assets/kdial-logo-new.png.asset.json";
+const kdialLogo = kdialLogoAsset.url;
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
