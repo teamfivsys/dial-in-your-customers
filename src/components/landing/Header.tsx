@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import kdialLogoAsset from "@/assets/kdial-logo-new.png.asset.json";
-const kdialLogo = kdialLogoAsset.url;
+import kdialLogo from "@/assets/kdial-logo.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CountdownTimer } from "@/components/CountdownTimer";
 
