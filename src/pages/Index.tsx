@@ -8,6 +8,7 @@ import AEOContent from "@/components/landing/AEOContent";
 import FAQSection from "@/components/landing/FAQSection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import Footer from "@/components/landing/Footer";
+import StickyMobileCTA from "@/components/landing/StickyMobileCTA";
 import SEO from "@/components/seo/SEO";
 import StructuredData, {
   organizationSchema,
@@ -53,6 +54,7 @@ const Index = () => {
         <FinalCTASection />
       </main>
       <Footer />
+      <StickyMobileCTA />
     </div>
   );
 };
