@@ -1,8 +1,9 @@
-import { motion, type Variants } from "framer-motion";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
+import { getVariant, HEADLINES, logConversion, logImpression, type Variant } from "@/lib/ab";
 
 const NAVY = "#0A1730";
-const PANEL = "#0F2150";
 const BLUE = "#1E6FFF";
 const ORANGE = "#FF6B1A";
 const CREAM = "#F5F1E8";
@@ -12,251 +13,169 @@ const whatsappMessage = encodeURIComponent(
 );
 const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
-const tile = "rounded-3xl border border-white/5 transition-transform duration-300";
+const display = { fontFamily: "'Space Grotesk', system-ui, sans-serif" };
+const serif = { fontFamily: "'Instrument Serif', Georgia, serif" };
+const body = { fontFamily: "'DM Sans', system-ui, sans-serif" };
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
-};
-
-const Tile = ({
-  i,
-  className = "",
-  style,
-  children,
-}: {
-  i: number;
-  className?: string;
-  style?: React.CSSProperties;
-  children: React.ReactNode;
-}) => (
-  <motion.div
-    custom={i}
-    initial="hidden"
-    animate="show"
-    variants={fadeUp}
-    whileHover={{ y: -3 }}
-    className={`${tile} ${className}`}
-    style={style}
-  >
-    {children}
-  </motion.div>
+const WhatsAppGlyph = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.41-8.411" />
+  </svg>
 );
 
 const HeroSection = () => {
+  const [variant, setVariant] = useState<Variant>("A");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const v = getVariant();
+    setVariant(v);
+    setMounted(true);
+    logImpression(v);
+  }, []);
+
+  const headline = HEADLINES[variant];
+
   return (
     <section
-      className="relative overflow-hidden py-10 md:py-16 lg:py-20"
-      style={{ backgroundColor: NAVY }}
+      aria-label="KDial hero"
+      className="relative w-full py-6 md:py-14 lg:py-20 px-3 md:px-8"
+      style={{ backgroundColor: CREAM }}
     >
-      {/* atmospheric glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 -right-32 h-[28rem] w-[28rem] rounded-full blur-[120px] opacity-30"
-        style={{ backgroundColor: BLUE }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 -left-32 h-[24rem] w-[24rem] rounded-full blur-[120px] opacity-15"
-        style={{ backgroundColor: ORANGE }}
-      />
+      {/* editorial rule line */}
+      <div className="max-w-2xl mx-auto pb-3 md:pb-6 flex items-baseline justify-between border-b border-[#0A1730]/15">
+        <span style={serif} className="text-[13px] md:text-sm italic text-[#0A1730]/70">
+          Vol. 01 · Kerala's paid-only directory
+        </span>
+        <span style={body} className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.22em] text-[#0A1730]/60">
+          Kochi · Est. 2026
+        </span>
+      </div>
 
-      <div className="container relative z-10 mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-min gap-3 md:gap-4">
-          {/* 1. Wordmark + status pills */}
-          <Tile
-            i={0}
-            className="md:col-span-4 p-6 md:p-7 flex flex-col justify-between min-h-[180px]"
-            style={{ backgroundColor: CREAM, borderColor: "rgba(10,23,48,0.08)" }}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-2xl mx-auto mt-4 md:mt-8 bg-[#0A1730] text-[#F5F1E8] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_30px_80px_-30px_rgba(10,23,48,0.55)]"
+        style={body}
+      >
+        {/* card header */}
+        <div className="px-5 md:px-8 py-3 md:py-4 flex items-center justify-between border-b border-[#F5F1E8]/10">
+          <span style={display} className="text-lg md:text-xl font-bold tracking-tight">
+            <span className="text-[#1E6FFF]">k</span>
+            <span className="text-[#FF6B1A]">.</span>
+            dial
+          </span>
+          <span
+            className="inline-flex items-center gap-1.5 bg-[#FF6B1A] text-white text-[9px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-[0.18em]"
           >
-            <div
-              className="text-4xl md:text-5xl font-bold tracking-tight"
-              style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", color: NAVY }}
-            >
-              <span style={{ color: BLUE }}>k</span>
-              <span style={{ color: ORANGE }}>.</span>
-              dial
-            </div>
-            <div className="flex flex-wrap gap-2 mt-6">
-              <span
-                className="px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] rounded-full border"
-                style={{ color: NAVY, borderColor: "rgba(10,23,48,0.15)", backgroundColor: "rgba(10,23,48,0.04)" }}
-              >
-                14 Districts
-              </span>
-              <span
-                className="px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] rounded-full border"
-                style={{ color: NAVY, borderColor: "rgba(10,23,48,0.15)", backgroundColor: "rgba(10,23,48,0.04)" }}
-              >
-                Verified
-              </span>
-              <span
-                className="px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] rounded-full border"
-                style={{ color: NAVY, borderColor: "rgba(10,23,48,0.15)", backgroundColor: "rgba(10,23,48,0.04)" }}
-              >
-                Paid-only
-              </span>
-            </div>
-          </Tile>
+            <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+            Founder Offer
+          </span>
+        </div>
 
-          {/* 2. Headline hero */}
-          <Tile
-            i={1}
-            className="md:col-span-8 md:row-span-2 p-8 md:p-12 relative overflow-hidden flex flex-col justify-center"
-            style={{ backgroundColor: PANEL }}
-          >
-            <div
-              aria-hidden
-              className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-[100px] opacity-40"
-              style={{ backgroundColor: BLUE }}
-            />
-            <h1
-              className="relative z-10 text-3xl md:text-5xl lg:text-6xl font-bold leading-[0.98] tracking-tight text-white"
-              style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-            >
-              Kerala's Best
-              <br />
-              <span style={{ color: BLUE }}>Business Directory.</span>
-              <br />
-              <span className="text-white/60">Stop buying 'leads'.</span>
-            </h1>
-            <p className="relative z-10 mt-6 md:mt-8 text-base md:text-lg text-white/65 max-w-2xl leading-relaxed">
-              The first directory in Kerala where customers contact{" "}
-              <span className="text-white font-semibold">you</span> directly. No commission. No middlemen. No spam calls.
+        {/* body */}
+        <div className="p-6 md:p-12 space-y-7 md:space-y-9">
+          <div className="space-y-3 md:space-y-4">
+            <p style={serif} className="text-[13px] md:text-sm italic text-[#F5F1E8]/60">
+              — An open letter to every Kerala business owner
             </p>
-          </Tile>
+            <h1
+              style={display}
+              className="text-[clamp(2rem,8.5vw,3.75rem)] leading-[1.02] tracking-tight font-bold text-white"
+            >
+              {headline.top}{" "}
+              <span style={serif} className="italic font-normal text-[#FF6B1A]">
+                {headline.accent}
+              </span>{" "}
+              {headline.tail}
+            </h1>
+            <p className="text-base md:text-lg leading-relaxed text-[#F5F1E8]/75 max-w-lg">
+              Kerala's only paid directory where customers call your WhatsApp{" "}
+              <span className="text-white font-semibold">directly</span>. No middleman.
+              No reselling. No spam.
+            </p>
+          </div>
 
-          {/* 3. Orange price anchor */}
-          <Tile
-            i={2}
-            className="md:col-span-4 p-6 md:p-7 flex flex-col justify-between min-h-[220px]"
-            style={{ backgroundColor: ORANGE, borderColor: "rgba(255,255,255,0.15)" }}
-          >
-            <div>
-              <p className="text-white/85 uppercase text-[10px] font-black tracking-[0.18em]">
-                Pre-Launch · Founder Slot
+          {/* Price lockup */}
+          <div className="relative bg-[#1E6FFF] p-5 md:p-6 rounded-2xl overflow-hidden">
+            <div className="relative z-10">
+              <p style={body} className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/80">
+                Pre-launch · founder slot
               </p>
-              <div className="mt-3 flex items-baseline gap-3">
-                <span
-                  className="text-5xl md:text-6xl font-bold text-white leading-none"
-                  style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-                >
+              <div className="mt-2 flex items-baseline gap-3 flex-wrap">
+                <span style={display} className="text-5xl md:text-6xl font-bold text-white tracking-tighter leading-none">
                   ₹501
                 </span>
-                <span className="text-white/70 line-through text-lg">₹2,999</span>
+                <span className="text-lg text-white/60 line-through">₹2,999</span>
+                <span className="text-sm font-medium text-white/90">/ year</span>
               </div>
-              <p className="text-white/85 text-xs mt-2 font-medium">per year · save ₹2,498</p>
-            </div>
-            <div className="mt-6 flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-              </span>
-              <p className="text-white text-xs font-semibold tracking-wide">
-                First 100 businesses only
+              <p style={serif} className="mt-2 text-sm italic text-white/85">
+                Save ₹2,498 · locked forever at renewal
               </p>
             </div>
-          </Tile>
+            <div className="absolute -right-4 -bottom-6 opacity-[0.09] pointer-events-none select-none">
+              <span style={display} className="text-[9rem] md:text-[11rem] font-black text-white leading-none">
+                100
+              </span>
+            </div>
+          </div>
 
-          {/* 4. Trust bullets */}
-          <Tile
-            i={3}
-            className="md:col-span-4 p-6 md:p-7"
-            style={{ backgroundColor: PANEL }}
-          >
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40 mb-4">
-              What you get
+          {/* Value bullets */}
+          <ul className="grid gap-3">
+            {[
+              "Direct customer WhatsApp calls",
+              "Zero lead reselling to competitors",
+              "Verified, paid-only listings across 14 districts",
+            ].map((line) => (
+              <li key={line} className="flex items-start gap-3">
+                <span className="mt-0.5 h-5 w-5 rounded-full bg-[#FF6B1A] flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                </span>
+                <span className="text-[15px] md:text-base font-medium text-[#F5F1E8]/90">{line}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA */}
+          <div className="space-y-3 pt-2">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => mounted && logConversion(variant)}
+              className="group w-full inline-flex items-center justify-center gap-3 bg-white text-[#0A1730] hover:bg-[#FF6B1A] hover:text-white transition-colors duration-300 font-bold py-4 md:py-5 rounded-xl text-base md:text-lg shadow-[0_12px_30px_-12px_rgba(0,0,0,0.5)]"
+              style={display}
+            >
+              <WhatsAppGlyph className="w-5 h-5 md:w-6 md:h-6" />
+              Register via WhatsApp
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <p
+              style={body}
+              className="text-center text-[10px] md:text-[11px] font-semibold text-[#F5F1E8]/55 uppercase tracking-[0.24em]"
+            >
+              Hurry · limited to the first 100 businesses
             </p>
-            <ul className="space-y-3">
-              {[
-                "Direct customer calls — no lead reselling",
-                "WhatsApp inquiries straight to your inbox",
-                "Verified, paid-only listings",
-                "Indexed across 1,400+ SEO pages",
-              ].map((line) => (
-                <li key={line} className="flex items-start gap-3">
-                  <span
-                    className="mt-1.5 h-1.5 w-1.5 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: BLUE }}
-                  />
-                  <span className="text-white/80 text-sm leading-relaxed">{line}</span>
-                </li>
-              ))}
-            </ul>
-          </Tile>
-
-          {/* 5. Stat: pages */}
-          <Tile
-            i={4}
-            className="md:col-span-2 p-6 flex flex-col justify-center"
-            style={{ backgroundColor: PANEL }}
-          >
-            <span
-              className="text-3xl md:text-4xl font-bold text-white leading-none"
-              style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-            >
-              1,400+
-            </span>
-            <span className="mt-2 text-[10px] uppercase tracking-[0.15em] font-bold text-white/45 leading-tight">
-              City × Category Pages
-            </span>
-          </Tile>
-
-          {/* 6. Stat: slots (filled blue) */}
-          <Tile
-            i={5}
-            className="md:col-span-2 p-6 flex flex-col justify-center"
-            style={{ backgroundColor: BLUE, borderColor: "rgba(255,255,255,0.15)" }}
-          >
-            <span
-              className="text-3xl md:text-4xl font-bold text-white leading-none"
-              style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-            >
-              100
-            </span>
-            <span className="mt-2 text-[10px] uppercase tracking-[0.15em] font-bold text-white/80 leading-tight">
-              Founder Slots
-            </span>
-          </Tile>
-
-          {/* 7. WhatsApp CTA tile */}
-          <motion.a
-            custom={6}
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            whileHover={{ y: -3 }}
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${tile} md:col-span-4 p-6 md:p-7 flex items-center justify-between group cursor-pointer`}
-            style={{ backgroundColor: "#ffffff", borderColor: "rgba(10,23,48,0.08)" }}
-          >
-            <div className="flex flex-col">
-              <span
-                className="text-lg md:text-xl font-bold leading-tight"
-                style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", color: NAVY }}
-              >
-                Lock My Price <br />
-                <span style={{ color: BLUE }}>@ ₹501 via WhatsApp</span>
-              </span>
-              <span className="text-xs mt-2 font-medium" style={{ color: "rgba(10,23,48,0.55)" }}>
-                <MessageCircle className="inline h-3.5 w-3.5 mr-1 -mt-0.5" />
-                Replies in under 10 minutes
-              </span>
-            </div>
-            <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              style={{ backgroundColor: NAVY }}
-            >
-              <ArrowUpRight className="w-5 h-5 text-white" />
-            </div>
-          </motion.a>
+          </div>
         </div>
+
+        {/* Signature bar */}
+        <div className="h-1.5 w-full flex">
+          <div className="flex-1" style={{ backgroundColor: BLUE }} />
+          <div className="flex-1" style={{ backgroundColor: ORANGE }} />
+          <div className="flex-1" style={{ backgroundColor: CREAM }} />
+        </div>
+      </motion.div>
+
+      {/* Editorial footnote */}
+      <div className="max-w-2xl mx-auto mt-4 md:mt-6 flex flex-wrap items-baseline justify-between gap-2 pb-16 md:pb-0">
+        <span style={serif} className="text-[13px] md:text-sm italic text-[#0A1730]/70">
+          Signed, the KDial founders — made in Kerala.
+        </span>
+        <span style={body} className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#0A1730]/60">
+          Variant · {variant}
+        </span>
       </div>
     </section>
   );
