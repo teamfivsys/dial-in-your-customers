@@ -1,75 +1,57 @@
-# Update Logo, Rebrand Colors, Change Price to ₹501
+## Goal
 
-## 1. New Logo Asset
+Kill the current "AI-slop" hero and rebuild it as a crafted, mobile-first landing with a real headline A/B test whose results are stored in Lovable Cloud.
 
-- Upload the new logo image as a Lovable Asset from `/mnt/user-uploads/file_0000000083a47207bfd198093b397f9c.png` → `src/assets/kdial-logo-new.png.asset.json`
-- Replace the old logo imports in:
-  - `src/components/landing/Header.tsx` (currently uses `WhatsApp_Image_2026-02-23...png`)
-  - `src/components/landing/Footer.tsx` (currently uses `kdial-logo.png`)
+## 1. Fresh design directions (pick one)
 
-## 2. Recolor UI to Match New Logo
+Once you approve this plan, in build mode I'll:
 
-The new logo defines this palette:
+1. Capture the live hero via headless browser (mobile viewport 360×640 + desktop 1280×900) as visual reference.
+2. Call the directions tool with the current screenshot attached, locking Electric Midnight palette (#0A1730 / #1E6FFF / #FF6B1A / #F5F1E8) and Space Grotesk + DM Sans, and generate 3 rendered hero concepts that vary in composition/density/motion (e.g. editorial split, vertical tower, kinetic bento — no more generic tiled cards).
+3. Present them via the prototype picker — you click the one to build.
 
-| Token | New Value | Was |
-|---|---|---|
-| `--primary` (Blue) | `218 100% 56%` (#1E6FFF electric blue) | Red |
-| `--accent` (Orange) | `20 100% 55%` (#FF6B1A vibrant orange) | Orange (kept) |
-| `--secondary` (Deep Navy) | `220 70% 12%` (#0A1730 dark navy from wordmark) | Mid blue |
-| `--foreground` | `220 70% 10%` deep navy text | Dark gray |
-| `--background` | `0 0% 100%` white (unchanged) | White |
-| `--whatsapp` | `142 70% 49%` green (unchanged for CTA) | Same |
+Only the picked direction gets implemented. No merging.
 
-### Gradient updates in `src/index.css`:
-- `--gradient-brand`: `linear-gradient(135deg, #1E6FFF 0%, #FF6B1A 100%)` (blue → orange, matches logo "k" + dot)
-- `--gradient-hero`: subtle blue-tinted white wash
-- Body background radial gradients: blue + orange tints instead of red
+## 2. Headline A/B test (under the logo, in Header)
 
-### Dark mode:
-- Keep palette consistent — primary blue stays vivid, accent orange stays warm, background goes deep navy `220 30% 8%`
+- Two variants:
+  - **A**: "Kerala's Best Business Directory. Stop buying leads."
+  - **B**: "Get real customer calls. Not resold leads." *(you can edit both in one file)*
+- On first visit, assign variant 50/50, persist in `localStorage` (`kdial_ab_variant`) so the same visitor always sees the same headline.
+- Render a small variant chip under the logo in the header (dev-visible, styleable, can be hidden later) and swap the hero H1 accordingly.
+- Every WhatsApp CTA click fires a conversion event tagged with the variant.
 
-### Files that reference hardcoded colors (need verification, no class changes needed since they use tokens):
-- `HeroSection.tsx`, `PricingSection.tsx`, `ComparisonSection.tsx`, `BenefitsSection.tsx`, `ProcessSection.tsx`, `FAQSection.tsx`, `FinalCTASection.tsx` — all use semantic tokens, so they auto-recolor.
-- A few hardcoded `rgba(234, 88, 12, ...)` (orange) shadow values stay (still match new orange).
+## 3. Lovable Cloud tracking
 
-## 3. Change Offer Price ₹999 → ₹501
+Enable Lovable Cloud, then:
 
-Replace across the codebase:
+- Table `ab_events` — columns: `id uuid pk`, `variant text check in ('A','B')`, `event text check in ('impression','whatsapp_click')`, `session_id text`, `path text`, `user_agent text`, `created_at timestamptz default now()`.
+- Public-insert RLS: anon `INSERT` allowed, no `SELECT` for anon. `SELECT` only via authenticated admin role (`has_role`) — so results aren't leaked publicly.
+- Grants: `GRANT INSERT ON public.ab_events TO anon, authenticated; GRANT ALL TO service_role;`
+- Client helper `src/lib/ab.ts`: `getVariant()`, `logImpression()` (fires once per session), `logConversion()` (call from every WhatsApp `onClick`).
+- Simple `/ab-results` page gated behind admin role showing counts + CTR per variant (nice-to-have; ship if time permits, otherwise query in the Cloud dashboard).
 
-| Where | Change |
-|---|---|
-| `HeroSection.tsx` | "₹999" → "₹501", WhatsApp message text, button label "Lock My Price @ ₹501" |
-| `PricingSection.tsx` | "₹999" → "₹501", "Save ₹2,000" → "Save ₹2,498" |
-| `FinalCTASection.tsx` | "₹999" → "₹501", button "Secure My ₹501 Listing" |
-| `ProcessSection.tsx` | Any ₹999 mentions → ₹501 |
-| `FAQSection.tsx`, `AEOContent.tsx`, `FAQSchema.tsx` | Q&A text mentioning ₹999 → ₹501 |
-| `Blog posts` (`src/data/blogPosts.ts`) | ₹999 → ₹501 inside post content |
-| `SEO.tsx` default description | ₹999 → ₹501 if present |
-| `StructuredData.tsx` | `productSchema.offers.price` "999" → "501"; `prelaunchOfferSchema.price` "999" → "501" |
-| `index.html` meta description | Update if it mentions ₹999 |
-| Sitemap / robots — no change |
+## 4. Mobile-first polish (applies to whichever direction wins)
 
-## 4. What stays exactly the same
+- Header: reduce logo from `h-20/24/28` to `h-10/12` on mobile, collapse countdown into single-line compact pill, move theme toggle into a small icon-only button. Sticky header must not eat >64px on mobile.
+- Hero: single-column stack on <768px with a strong H1 (clamp 32–40px), price tile promoted right below headline, sticky bottom WhatsApp CTA bar on mobile (thumb-reach zone).
+- Typography scale rebuilt with `clamp()` so headings scale continuously rather than jumping at breakpoints.
+- Tap targets ≥44px; remove hover-only affordances on touch.
+- Preload Space Grotesk 700 + DM Sans 400 to kill FOUT.
 
-- Layout, spacing, animations, typography (Poppins), component structure
-- Routing, SEO structure, FAQ schema shape, all city/category pages
-- WhatsApp number `917356137106`, CTA copy structure
-- All non-color tokens
+## 5. Files touched
 
-## Files to Modify
+- `src/components/landing/HeroSection.tsx` — rewritten to picked direction
+- `src/components/landing/Header.tsx` — smaller mobile logo, variant chip, sticky sizing
+- `src/components/landing/StickyMobileCTA.tsx` — new
+- `src/lib/ab.ts` — new (variant assignment + logging)
+- `src/integrations/supabase/…` — auto-generated on Cloud enable
+- Migration: `ab_events` table + RLS + grants
+- `src/main.tsx` — preload font subset
 
-1. `src/assets/kdial-logo-new.png.asset.json` (new)
-2. `src/index.css` (color tokens + gradients)
-3. `src/components/landing/Header.tsx` (logo import)
-4. `src/components/landing/Footer.tsx` (logo import)
-5. `src/components/landing/HeroSection.tsx` (price + WhatsApp msg)
-6. `src/components/landing/PricingSection.tsx` (price + savings)
-7. `src/components/landing/FinalCTASection.tsx` (price)
-8. `src/components/landing/ProcessSection.tsx` (if price referenced)
-9. `src/components/landing/FAQSection.tsx` (price in answers)
-10. `src/components/landing/AEOContent.tsx` (price)
-11. `src/components/seo/FAQSchema.tsx` (price in aeoFaqs)
-12. `src/components/seo/StructuredData.tsx` (offer price)
-13. `src/components/seo/SEO.tsx` (description if it has price)
-14. `src/data/blogPosts.ts` (price mentions in post content)
-15. `index.html` (meta description if it mentions price)
+## Out of scope
+
+- Redesigning sections below the hero (Pricing, FAQ, Footer) — I'll only touch them if the picked direction's tokens require it for visual consistency.
+- Full analytics dashboard UI beyond a minimal counts table.
+
+Reply "go" (or pick a direction after I show them) to proceed.
