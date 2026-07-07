@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import kdialLogo from "@/assets/kdial-logo.png";
+import { KdialWordmark } from "@/components/brand/KdialWordmark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { getVariant, type Variant } from "@/lib/ab";
@@ -22,11 +22,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center gap-2" aria-label="KDial home">
-          <img
-            src={kdialLogo}
-            alt="KDial — Kerala's paid-only business directory"
-            className="h-8 md:h-10 w-auto"
-          />
+          <KdialWordmark size={22} className="md:!text-[26px]" />
           {variant && (
             <span
               className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-[0.18em] uppercase bg-[#0A1730] text-[#F5F1E8]"
