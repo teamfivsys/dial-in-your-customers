@@ -22,7 +22,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center gap-2" aria-label="KDial home">
-          <KdialWordmark size={22} className="md:!text-[26px]" />
+          <KdialWordmark size={24} />
           {variant && (
             <span
               className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-[0.18em] uppercase bg-[#0A1730] text-[#F5F1E8]"
