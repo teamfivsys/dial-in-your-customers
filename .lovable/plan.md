@@ -1,45 +1,43 @@
-## Problem
+## Status of A/B tracking (already live — no code changes needed)
 
-You see a fully blank white screen on your phone. When I load the same preview URL headless at 390 px, the hero, navy card, price, and CTA all render. So the build is not broken — something on your device/session is crashing or blocking first paint.
+Verified in the current build:
 
-## Most likely causes (in order)
+- **Persistent assignment** — `src/lib/ab.ts` writes the variant to `localStorage['kdial_ab_variant']` on the first visit and reads the same value on every reload, so a returning visitor always sees the same hero headline (A or B).
+- **Impression tracking** — `logImpression(variant)` fires once per browser into the `ab_events` table with `event = 'impression'`, `session_id`, `path`, and `user_agent`.
+- **WhatsApp conversion tracking** — `logConversion(variant)` fires with `event = 'whatsapp_click'` from both the hero button (`HeroSection.tsx`) and the sticky mobile CTA (`StickyMobileCTA.tsx`).
 
-1. **Stale service worker / cached blank HTML** from a previous broken deploy. Very common after multiple redesign iterations. A hard-refresh usually fixes it instantly.
-2. **A runtime error only triggered on your device** (older mobile browser, extension, or a specific viewport path). Nothing shows in my headless run, so I need your live console.
-3. **Supabase client init failure** — `src/lib/ab.ts` imports the supabase client at module load. If the env vars are missing in your session, it can throw before React mounts. I want to make this non-fatal regardless.
+I'll surface this properly and add nothing redundant.
 
-## Plan
+## Fix: header logo shows a white rectangle on the cream header
 
-### Step 1 — Have you try the zero-code fixes first
-Before I touch code, try in this order and tell me which one works:
-- Hard refresh the preview (pull-to-refresh, or open the preview URL in a fresh tab).
-- Open the preview URL directly in Chrome/Safari (not inside the Lovable mobile chat wrapper).
-- If it's still blank, open DevTools / remote-inspect and copy the first red console error to me.
+Root cause: `src/assets/kdial-logo.png` is exported with a solid white background, so on the cream (`#F5F1E8`) header it reads as a floating white tile — that's the "white" you're seeing.
 
-### Step 2 — Make the app resilient so it can never render blank
-Regardless of the diagnosis, harden the code so a bad env var, a Supabase failure, or a component crash shows something instead of a white screen:
+### Approach
 
-- **Wrap `<App />` in an ErrorBoundary** (new `src/components/ErrorBoundary.tsx`) that renders a minimal fallback (logo + "Register on WhatsApp" CTA + error text) so the CTA is always reachable even if the hero crashes.
-- **Guard the Supabase client** in `src/integrations/supabase/client.ts`: if `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` are missing, export a no-op stub whose `.from().insert()` resolves silently. A/B logging must never break the page.
-- **Defer `getVariant()` / `logImpression()`** in `HeroSection.tsx` and `Header.tsx` so any storage/crypto exception is swallowed and defaults to variant A.
-- **Remove the FOUT risk**: keep font imports, but add `font-display: swap` fallbacks in `src/index.css` so text is visible immediately in system fonts while `@fontsource` files download over slow 5G.
+Replace the raster logo in the header with an inline SVG wordmark that matches the "k.dial" mark already used inside the hero card. Same type family (Space Grotesk), same blue "k" + orange dot + navy "dial", no background box — it sits directly on the cream and stays crisp at any size.
 
-### Step 3 — Verify
-- Rebuild and re-run the headless Playwright load at 390 px to confirm the page still renders.
-- Load the preview with `VITE_SUPABASE_*` intentionally blanked to confirm the stub + error boundary keep the hero visible.
-- Ask you to hard-refresh and confirm content appears.
+- **`Header.tsx`**: swap `<img src={kdialLogo} …>` for an inline SVG wordmark component. Keep the A/B variant chip and countdown/theme controls exactly as they are.
+- **`Footer.tsx`**: apply the same wordmark (larger size) so the footer stops rendering a big white box on cream too.
+- **New file** `src/components/brand/KdialWordmark.tsx`: a small, reusable inline SVG wordmark (accepts `className` and `size` props, colors are hard-locked to the brand tokens: `#1E6FFF`, `#FF6B1A`, `#0A1730`).
+- Keep the PNG file in the repo — still referenced by SEO/OG image metadata elsewhere.
 
-## Out of scope
-- No visual redesign in this pass. The Vertical Manifesto direction stays exactly as it is.
-- No changes to sections below the hero.
-- No changes to the A/B test schema — only its client wiring is hardened.
+### Verification
+
+- Headless Playwright at 360×642 (your device) — screenshot header and confirm no white rectangle, logo sits flush on cream.
+- Screenshot footer — same check.
+- Confirm A/B chip (`exp · A` / `exp · B`) still shows next to the wordmark on ≥sm viewports.
+- Send a WhatsApp click in the browser and check the network tab shows an insert into `ab_events`.
 
 ## Files touched
-- `src/components/ErrorBoundary.tsx` (new)
-- `src/App.tsx` (wrap in boundary)
-- `src/integrations/supabase/client.ts` (env-safe stub) — note this is normally auto-generated; I'll add a thin wrapper module instead if we must not edit it
-- `src/lib/ab.ts` (try/catch around storage + insert)
-- `src/components/landing/HeroSection.tsx` and `Header.tsx` (defensive `getVariant`)
-- `src/index.css` (font-display swap fallback stack)
 
-Reply **go** to implement, or tell me which of the Step 1 checks (hard refresh, direct URL, console error) you tried first.
+- `src/components/brand/KdialWordmark.tsx` (new)
+- `src/components/landing/Header.tsx` (swap img → wordmark)
+- `src/components/landing/Footer.tsx` (swap img → wordmark)
+
+## Out of scope
+
+- Hero content, pricing, sticky CTA, and A/B logic — untouched.
+- No changes to the PNG file or SEO metadata.
+- No changes to the `ab_events` schema.
+
+Reply **go** to implement.
