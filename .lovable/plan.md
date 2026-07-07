@@ -1,57 +1,45 @@
-## Goal
+## Problem
 
-Kill the current "AI-slop" hero and rebuild it as a crafted, mobile-first landing with a real headline A/B test whose results are stored in Lovable Cloud.
+You see a fully blank white screen on your phone. When I load the same preview URL headless at 390 px, the hero, navy card, price, and CTA all render. So the build is not broken — something on your device/session is crashing or blocking first paint.
 
-## 1. Fresh design directions (pick one)
+## Most likely causes (in order)
 
-Once you approve this plan, in build mode I'll:
+1. **Stale service worker / cached blank HTML** from a previous broken deploy. Very common after multiple redesign iterations. A hard-refresh usually fixes it instantly.
+2. **A runtime error only triggered on your device** (older mobile browser, extension, or a specific viewport path). Nothing shows in my headless run, so I need your live console.
+3. **Supabase client init failure** — `src/lib/ab.ts` imports the supabase client at module load. If the env vars are missing in your session, it can throw before React mounts. I want to make this non-fatal regardless.
 
-1. Capture the live hero via headless browser (mobile viewport 360×640 + desktop 1280×900) as visual reference.
-2. Call the directions tool with the current screenshot attached, locking Electric Midnight palette (#0A1730 / #1E6FFF / #FF6B1A / #F5F1E8) and Space Grotesk + DM Sans, and generate 3 rendered hero concepts that vary in composition/density/motion (e.g. editorial split, vertical tower, kinetic bento — no more generic tiled cards).
-3. Present them via the prototype picker — you click the one to build.
+## Plan
 
-Only the picked direction gets implemented. No merging.
+### Step 1 — Have you try the zero-code fixes first
+Before I touch code, try in this order and tell me which one works:
+- Hard refresh the preview (pull-to-refresh, or open the preview URL in a fresh tab).
+- Open the preview URL directly in Chrome/Safari (not inside the Lovable mobile chat wrapper).
+- If it's still blank, open DevTools / remote-inspect and copy the first red console error to me.
 
-## 2. Headline A/B test (under the logo, in Header)
+### Step 2 — Make the app resilient so it can never render blank
+Regardless of the diagnosis, harden the code so a bad env var, a Supabase failure, or a component crash shows something instead of a white screen:
 
-- Two variants:
-  - **A**: "Kerala's Best Business Directory. Stop buying leads."
-  - **B**: "Get real customer calls. Not resold leads." *(you can edit both in one file)*
-- On first visit, assign variant 50/50, persist in `localStorage` (`kdial_ab_variant`) so the same visitor always sees the same headline.
-- Render a small variant chip under the logo in the header (dev-visible, styleable, can be hidden later) and swap the hero H1 accordingly.
-- Every WhatsApp CTA click fires a conversion event tagged with the variant.
+- **Wrap `<App />` in an ErrorBoundary** (new `src/components/ErrorBoundary.tsx`) that renders a minimal fallback (logo + "Register on WhatsApp" CTA + error text) so the CTA is always reachable even if the hero crashes.
+- **Guard the Supabase client** in `src/integrations/supabase/client.ts`: if `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` are missing, export a no-op stub whose `.from().insert()` resolves silently. A/B logging must never break the page.
+- **Defer `getVariant()` / `logImpression()`** in `HeroSection.tsx` and `Header.tsx` so any storage/crypto exception is swallowed and defaults to variant A.
+- **Remove the FOUT risk**: keep font imports, but add `font-display: swap` fallbacks in `src/index.css` so text is visible immediately in system fonts while `@fontsource` files download over slow 5G.
 
-## 3. Lovable Cloud tracking
-
-Enable Lovable Cloud, then:
-
-- Table `ab_events` — columns: `id uuid pk`, `variant text check in ('A','B')`, `event text check in ('impression','whatsapp_click')`, `session_id text`, `path text`, `user_agent text`, `created_at timestamptz default now()`.
-- Public-insert RLS: anon `INSERT` allowed, no `SELECT` for anon. `SELECT` only via authenticated admin role (`has_role`) — so results aren't leaked publicly.
-- Grants: `GRANT INSERT ON public.ab_events TO anon, authenticated; GRANT ALL TO service_role;`
-- Client helper `src/lib/ab.ts`: `getVariant()`, `logImpression()` (fires once per session), `logConversion()` (call from every WhatsApp `onClick`).
-- Simple `/ab-results` page gated behind admin role showing counts + CTR per variant (nice-to-have; ship if time permits, otherwise query in the Cloud dashboard).
-
-## 4. Mobile-first polish (applies to whichever direction wins)
-
-- Header: reduce logo from `h-20/24/28` to `h-10/12` on mobile, collapse countdown into single-line compact pill, move theme toggle into a small icon-only button. Sticky header must not eat >64px on mobile.
-- Hero: single-column stack on <768px with a strong H1 (clamp 32–40px), price tile promoted right below headline, sticky bottom WhatsApp CTA bar on mobile (thumb-reach zone).
-- Typography scale rebuilt with `clamp()` so headings scale continuously rather than jumping at breakpoints.
-- Tap targets ≥44px; remove hover-only affordances on touch.
-- Preload Space Grotesk 700 + DM Sans 400 to kill FOUT.
-
-## 5. Files touched
-
-- `src/components/landing/HeroSection.tsx` — rewritten to picked direction
-- `src/components/landing/Header.tsx` — smaller mobile logo, variant chip, sticky sizing
-- `src/components/landing/StickyMobileCTA.tsx` — new
-- `src/lib/ab.ts` — new (variant assignment + logging)
-- `src/integrations/supabase/…` — auto-generated on Cloud enable
-- Migration: `ab_events` table + RLS + grants
-- `src/main.tsx` — preload font subset
+### Step 3 — Verify
+- Rebuild and re-run the headless Playwright load at 390 px to confirm the page still renders.
+- Load the preview with `VITE_SUPABASE_*` intentionally blanked to confirm the stub + error boundary keep the hero visible.
+- Ask you to hard-refresh and confirm content appears.
 
 ## Out of scope
+- No visual redesign in this pass. The Vertical Manifesto direction stays exactly as it is.
+- No changes to sections below the hero.
+- No changes to the A/B test schema — only its client wiring is hardened.
 
-- Redesigning sections below the hero (Pricing, FAQ, Footer) — I'll only touch them if the picked direction's tokens require it for visual consistency.
-- Full analytics dashboard UI beyond a minimal counts table.
+## Files touched
+- `src/components/ErrorBoundary.tsx` (new)
+- `src/App.tsx` (wrap in boundary)
+- `src/integrations/supabase/client.ts` (env-safe stub) — note this is normally auto-generated; I'll add a thin wrapper module instead if we must not edit it
+- `src/lib/ab.ts` (try/catch around storage + insert)
+- `src/components/landing/HeroSection.tsx` and `Header.tsx` (defensive `getVariant`)
+- `src/index.css` (font-display swap fallback stack)
 
-Reply "go" (or pick a direction after I show them) to proceed.
+Reply **go** to implement, or tell me which of the Step 1 checks (hard refresh, direct URL, console error) you tried first.

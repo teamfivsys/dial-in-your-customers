@@ -1,5 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
-
 export type Variant = "A" | "B";
 
 const VARIANT_KEY = "kdial_ab_variant";
@@ -54,6 +52,7 @@ function getSessionId(): string {
 
 async function logEvent(variant: Variant, event: "impression" | "whatsapp_click") {
   try {
+    const { supabase } = await import("@/integrations/supabase/client");
     await supabase.from("ab_events").insert({
       variant,
       event,
