@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import kdialLogo from "@/assets/kdial-logo.png";
+import { KdialWordmark } from "@/components/brand/KdialWordmark";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,11 +14,7 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center gap-4">
-          <img 
-            src={kdialLogo} 
-            alt="KDial Logo" 
-            className="h-16 md:h-20 w-auto"
-          />
+          <KdialWordmark size={40} />
           
           <p className="text-sm text-muted-foreground text-center">
             © {currentYear} KDial. All rights reserved.
