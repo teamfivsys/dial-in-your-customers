@@ -48,6 +48,21 @@ const faqs = [
     answer:
       "Absolutely! You'll have full access to your dashboard where you can update your photos, services, business hours, contact info, and more – anytime you want.",
   },
+  {
+    question: "Will my leads be shared with other businesses?",
+    answer:
+      "No. Every customer message goes straight to your WhatsApp. KDial does not resell, syndicate, or share your leads with competitors.",
+  },
+  {
+    question: "Do I need a website or GST number to list?",
+    answer:
+      "No website required. A GST number is not mandatory for smaller businesses, but we do verify that your business is real — a shop photo, visiting card, or trade licence is enough.",
+  },
+  {
+    question: "Which cities is KDial covering at launch?",
+    answer:
+      "We're launching first in Ernakulam, then rolling out across all 14 Kerala districts. Founder listings from any Kerala city are being accepted now.",
+  },
 ];
 
 const FAQSection = () => {

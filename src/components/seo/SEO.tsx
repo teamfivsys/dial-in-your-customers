@@ -11,8 +11,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "KDIAL - Kerala's Best Business Directory | Find Verified Local Businesses in Kochi, Calicut, Trivandrum",
-  description = "KDial is Kerala's first premium business directory where customers contact YOU directly. Find and list verified businesses across all 14 Kerala districts - Kochi, Ernakulam, Trivandrum, Calicut, Thrissur, Kannur, Kollam, Palakkad. No commission, no middlemen, no spam calls. Register your Kerala business for ₹501/year.",
+  title = "KDial — Kerala Business Directory | List Your Business Before Launch",
+  description = "KDial is Kerala's paid-only, verified business directory. Direct WhatsApp customer connections, no lead reselling. Founder listing ₹501/year — first 100 businesses.",
   keywords = "Kerala business directory, business listing Kerala, Kochi business directory, Ernakulam business listing, Trivandrum business search, Calicut local businesses, Thrissur business directory, Kerala business registration, verified businesses Kerala, local business directory Kerala, Kerala Justdial alternative, business directory Kochi, Kozhikode business listing, Kannur business directory, Kollam business search, Palakkad local businesses, Alappuzha business directory, Kottayam business listing, Malappuram business search, Kerala online business directory, register business Kerala, business listing near me Kerala, best business directory Kerala, Kerala local search, premium business listing Kerala",
   canonicalUrl = "https://kdial.in",
   ogType = "website",
