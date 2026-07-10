@@ -1,0 +1,12 @@
+{
+  "name": "KDial — Kerala Business Directory",
+  "short_name": "KDial",
+  "description": "Kerala's paid-only, verified business directory. Direct WhatsApp customer connections.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F1E8",
+  "theme_color": "#0A1730",
+  "icons": [
+    { "src": "/kdial-logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

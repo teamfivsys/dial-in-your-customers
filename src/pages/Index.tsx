@@ -9,6 +9,16 @@ import FAQSection from "@/components/landing/FAQSection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import Footer from "@/components/landing/Footer";
 import StickyMobileCTA from "@/components/landing/StickyMobileCTA";
+import TrustStrip from "@/components/landing/TrustStrip";
+import WhyKDial from "@/components/landing/WhyKDial";
+import ProblemsSolved from "@/components/landing/ProblemsSolved";
+import WhyVisibility from "@/components/landing/WhyVisibility";
+import WhoCanJoin from "@/components/landing/WhoCanJoin";
+import FutureFeatures from "@/components/landing/FutureFeatures";
+import LaunchRoadmap from "@/components/landing/LaunchRoadmap";
+import MissionVision from "@/components/landing/MissionVision";
+import PrivacyCommitment from "@/components/landing/PrivacyCommitment";
+import ExitIntentModal from "@/components/landing/ExitIntentModal";
 import SEO from "@/components/seo/SEO";
 import StructuredData, {
   organizationSchema,
@@ -45,16 +55,26 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <TrustStrip />
+        <WhyKDial />
+        <ProblemsSolved />
+        <WhyVisibility />
         <ComparisonSection />
         <BenefitsSection />
+        <WhoCanJoin />
         <PricingSection />
         <ProcessSection />
+        <FutureFeatures />
+        <LaunchRoadmap />
+        <MissionVision />
+        <PrivacyCommitment />
         <AEOContent />
         <FAQSection />
         <FinalCTASection />
       </main>
       <Footer />
       <StickyMobileCTA />
+      <ExitIntentModal />
     </div>
   );
 };
