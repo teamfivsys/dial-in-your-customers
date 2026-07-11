@@ -23,9 +23,9 @@ const Footer = () => {
             <img
               src={kdialLogo.url}
               alt="KDial — Kerala Business Directory"
-              width={144}
-              height={48}
-              className="h-10 w-auto"
+              width={216}
+              height={72}
+              className="h-16 w-auto"
               loading="lazy"
               decoding="async"
             />
