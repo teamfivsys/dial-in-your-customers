@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { KdialWordmark } from "@/components/brand/KdialWordmark";
 import { MessageCircle, Mail } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppCTA";
+import kdialLogo from "@/assets/kdial-logo.png.asset.json";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +20,15 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <KdialWordmark size={32} />
+            <img
+              src={kdialLogo.url}
+              alt="KDial — Kerala Business Directory"
+              width={144}
+              height={48}
+              className="h-10 w-auto"
+              loading="lazy"
+              decoding="async"
+            />
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">
               Kerala's paid-only, verified business directory. Customers on WhatsApp, direct.
             </p>

@@ -308,7 +308,7 @@ const BlogPost = () => {
               Ready to List Your Business on KDIAL?
             </h2>
             <p className="text-white/90 mb-6">
-              Pre-book your listing at just ₹999/year
+              Pre-book your listing at just ₹501/year
             </p>
             <Link
               to="/"

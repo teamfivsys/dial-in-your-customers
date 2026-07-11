@@ -45,7 +45,7 @@ const CategoryPage = () => {
   const whatsappMessage = encodeURIComponent(
     `Hi, I want to pre-book my ${categoryData.name} business listing on KDIAL${!isStatewide ? ` for ${locationName}` : ''}. Please share the details.`
   );
-  const whatsappLink = `https://wa.me/919876543210?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
   // Get SEO content
   const seoContent = getSEOContent(categoryData, locationName);
@@ -380,7 +380,7 @@ const CategoryPage = () => {
                   onClick={() => window.open(whatsappLink, '_blank')}
                 >
                   <Phone className="mr-2 h-5 w-5" />
-                  Pre-Book Your Listing at ₹999/year
+                  Pre-Book Your Listing at ₹501/year
                 </Button>
               </div>
             </div>

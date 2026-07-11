@@ -21,7 +21,7 @@ const CityPage = () => {
   const whatsappMessage = encodeURIComponent(
     `Hi, I want to pre-book my business listing on KDIAL for ${cityData.name}. Please share the details.`
   );
-  const whatsappLink = `https://wa.me/919876543210?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
   // Local Business Schema for this city
   const citySchema = {
@@ -293,7 +293,7 @@ const CityPage = () => {
                 Ready to Grow Your {cityData.name} Business?
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                Pre-book your KDIAL listing today at just ₹999/year. 
+                Pre-book your KDIAL listing today at just ₹501/year. 
                 Limited Founder Slots available!
               </p>
               <Button

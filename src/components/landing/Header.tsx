@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { KdialWordmark } from "@/components/brand/KdialWordmark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { getVariant, type Variant } from "@/lib/ab";
+import kdialLogo from "@/assets/kdial-logo.png.asset.json";
 
 const Header = () => {
   const launchDate = new Date("2025-03-15T23:59:59+05:30");
@@ -21,8 +21,16 @@ const Header = () => {
       className="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#F5F1E8]/85 border-b border-[#0A1730]/10"
     >
       <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
-        <a href="/" className="flex items-center gap-2" aria-label="KDial home">
-          <KdialWordmark size={24} />
+        <a href="/" className="flex items-center gap-2" aria-label="KDial — Kerala Business Directory home">
+          <img
+            src={kdialLogo.url}
+            alt="KDial — Kerala Business Directory"
+            width={112}
+            height={36}
+            className="h-8 md:h-9 w-auto"
+            fetchPriority="high"
+            decoding="async"
+          />
           {variant && (
             <span
               className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-[0.18em] uppercase bg-[#0A1730] text-[#F5F1E8]"
