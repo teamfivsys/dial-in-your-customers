@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageCircle, Mail } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppCTA";
-import kdialLogo from "@/assets/kdial-logo.png.asset.json";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,7 +20,7 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <img
-              src={kdialLogo.url}
+              src="/kdial-logo.png"
               alt="KDial — Kerala Business Directory"
               width={216}
               height={72}
