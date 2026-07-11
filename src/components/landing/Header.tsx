@@ -20,14 +20,14 @@ const Header = () => {
       transition={{ duration: 0.4 }}
       className="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#F5F1E8]/85 border-b border-[#0A1730]/10"
     >
-      <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-20 md:h-24 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center gap-2" aria-label="KDial — Kerala Business Directory home">
           <img
             src={kdialLogo.url}
             alt="KDial — Kerala Business Directory"
-            width={112}
-            height={36}
-            className="h-8 md:h-9 w-auto"
+            width={180}
+            height={60}
+            className="h-12 md:h-14 w-auto"
             fetchPriority="high"
             decoding="async"
           />
