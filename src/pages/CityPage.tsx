@@ -21,7 +21,7 @@ const CityPage = () => {
   const whatsappMessage = encodeURIComponent(
     `Hi, I want to pre-book my business listing on KDIAL for ${cityData.name}. Please share the details.`
   );
-  const whatsappLink = `https://wa.me/919876543210?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
   // Local Business Schema for this city
   const citySchema = {
