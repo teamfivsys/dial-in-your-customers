@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { getVariant, type Variant } from "@/lib/ab";
-import kdialLogo from "@/assets/kdial-logo.png.asset.json";
 
 const Header = () => {
   const launchDate = new Date("2025-03-15T23:59:59+05:30");
@@ -23,7 +22,7 @@ const Header = () => {
       <div className="container mx-auto flex h-20 md:h-24 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center gap-2" aria-label="KDial — Kerala Business Directory home">
           <img
-            src={kdialLogo.url}
+            src="/kdial-logo.png"
             alt="KDial — Kerala Business Directory"
             width={180}
             height={60}
