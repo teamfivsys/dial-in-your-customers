@@ -293,7 +293,7 @@ const CityPage = () => {
                 Ready to Grow Your {cityData.name} Business?
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                Pre-book your KDIAL listing today at just ₹999/year. 
+                Pre-book your KDIAL listing today at just ₹501/year. 
                 Limited Founder Slots available!
               </p>
               <Button
