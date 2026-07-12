@@ -1,0 +1,43 @@
+# KDIAL
+
+> KDIAL is Kerala's local business directory built to help people discover trusted businesses, professionals and services across Kerala.
+
+KDIAL is a Kerala-first business discovery platform connecting customers with businesses through structured listings, search, WhatsApp enquiries, maps and business profiles.
+
+Website: https://kdial.in
+
+## Core Features
+
+- [Business Listings](https://kdial.in/): Verified premium business profiles across Kerala.
+- [Local Search](https://kdial.in/): City + category discovery for Kerala businesses.
+- [Business Categories](https://kdial.in/): 100+ industries covered.
+- [Premium Listings](https://kdial.in/#pricing): Paid-only directory — founder offer ₹501/year.
+- [WhatsApp Contact](https://wa.me/917356137106): Customers reach businesses directly via WhatsApp.
+- [Blog](https://kdial.in/blog): Guides for Kerala businesses on visibility and lead generation.
+
+## Coverage
+
+All 14 districts of Kerala — Thiruvananthapuram, Kollam, Pathanamthitta, Alappuzha, Kottayam, Idukki, Ernakulam, Thrissur, Palakkad, Malappuram, Kozhikode, Wayanad, Kannur, Kasaragod.
+
+## Industries
+
+Restaurants, Hotels, Hospitals, Clinics, Doctors, Schools, Colleges, Retail Stores, Home Services, Real Estate, Automotive, Travel, Finance, Education, Beauty, Wellness, Legal Services, IT Companies, Marketing Agencies and other local businesses.
+
+## Business Model
+
+Premium-only, verified business listings for businesses operating in Kerala. No free listings, no lead reselling.
+
+## Audience
+
+Consumers looking for trusted local businesses, and businesses seeking greater online visibility across Kerala.
+
+## Optional
+
+- [City pages](https://kdial.in/kochi): Example district page.
+- [Category pages](https://kdial.in/kochi/dentists): Example city + category page.
+- [llms-full.txt](https://kdial.in/llms-full.txt): Full AI documentation.
+
+## Contact
+
+- Website: https://kdial.in
+- WhatsApp: +91 7356137106
