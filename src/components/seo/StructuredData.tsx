@@ -37,17 +37,18 @@ export const organizationSchema = {
       "@type": "Country",
       "name": "India"
     }
-  },
-  "contactPoint": {
-    "sameAs": [
+},
+"contactPoint": {
+  "@type": "ContactPoint",
+  "contactType": "customer service",
+  "availableLanguage": ["English", "Malayalam"]
+},
+"sameAs": [
   "https://www.facebook.com/kdial.in",
   "https://www.instagram.com/kdial.in/"
 ]
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "availableLanguage": ["English", "Malayalam"]
-  }
 };
+  
 
 // WebSite Schema with SearchAction
 export const websiteSchema = {
