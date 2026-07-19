@@ -11,8 +11,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "KDial – Kerala Business Directory | List Your Business Before Launch",
-  description = "KDial is Kerala's verified business directory. List your business for ₹501 during the founder offer and connect directly with customers across Kerala.",
+  title = "KDial | Kerala Business Directory – Pre-Booking Open",
+  description = "Join KDial, Kerala's premium verified business directory. Reserve your Founder Listing for just ₹501 and connect directly with customers across Kerala before our official launch.",
   keywords = "Kerala business directory, business listing Kerala, Kochi business directory, Ernakulam business listing, Trivandrum business directory, Kozhikode business directory, Thrissur business directory, verified businesses Kerala, Kerala local businesses, KDial",
   canonicalUrl = "https://kdial.in",
   ogType = "website",
@@ -28,8 +28,6 @@ const SEO = ({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-
-      {/* Canonical */}
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Robots */}
@@ -48,16 +46,23 @@ const SEO = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:secure_url" content={ogImage} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="KDial Kerala Business Directory" />
+      <meta
+        property="og:image:alt"
+        content="KDial - Kerala Business Directory"
+      />
       <meta property="og:site_name" content="KDial" />
       <meta property="og:locale" content="en_IN" />
       <meta property="og:locale:alternate" content="ml_IN" />
-      <meta
-        property="article:publisher"
-        content="https://www.facebook.com/kdial.in"
-      />
+
+      {/* Social Preview */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
 
       {/* Geo */}
       <meta name="geo.region" content="IN-KL" />
@@ -74,26 +79,29 @@ const SEO = ({
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=5"
       />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: light)"
-        content="#ffffff"
-      />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark)"
-        content="#0A1730"
-      />
+
+      <meta name="theme-color" content="#0A1730" />
+      <meta name="color-scheme" content="light dark" />
+
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta
         name="apple-mobile-web-app-status-bar-style"
         content="default"
       />
+      <meta
+        name="apple-mobile-web-app-title"
+        content="KDial"
+      />
+      <meta
+        name="application-name"
+        content="KDial"
+      />
       <meta name="format-detection" content="telephone=no" />
 
-      {/* Author */}
+      {/* Brand */}
       <meta name="author" content="KDial" />
+      <meta name="creator" content="KDial" />
       <meta
         name="publisher"
         content="KDial - Kerala Business Directory"
@@ -101,6 +109,7 @@ const SEO = ({
       <meta name="copyright" content="KDial" />
 
       {/* Misc */}
+      <meta name="referrer" content="strict-origin-when-cross-origin" />
       <meta name="rating" content="general" />
       <meta name="revisit-after" content="7 days" />
     </Helmet>
