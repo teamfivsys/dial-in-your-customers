@@ -24,11 +24,7 @@ import StructuredData, {
   organizationSchema,
   websiteSchema,
   productSchema,
-  localBusinessSchema,
-  businessDirectorySchema,
   howToRegisterSchema,
-  prelaunchOfferSchema,
-  serviceSchema,
   breadcrumbSchema,
 } from "@/components/seo/StructuredData";
 import FAQSchema, { aeoFaqs } from "@/components/seo/FAQSchema";
@@ -42,11 +38,7 @@ const Index = () => {
           organizationSchema,
           websiteSchema,
           productSchema,
-          localBusinessSchema,
-          businessDirectorySchema,
           howToRegisterSchema,
-          prelaunchOfferSchema,
-          serviceSchema,
           breadcrumbSchema,
         ]}
       />
