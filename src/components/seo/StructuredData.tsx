@@ -39,6 +39,10 @@ export const organizationSchema = {
     }
   },
   "contactPoint": {
+    "sameAs": [
+  "https://www.facebook.com/kdial.in",
+  "https://www.instagram.com/kdial.in/"
+]
     "@type": "ContactPoint",
     "contactType": "customer service",
     "availableLanguage": ["English", "Malayalam"]
@@ -52,6 +56,10 @@ export const websiteSchema = {
   "name": "KDIAL",
   "alternateName": "Kerala Business Directory",
   "url": "https://kdial.in",
+  "sameAs": [
+  "https://www.facebook.com/kdial.in",
+  "https://www.instagram.com/kdial.in/"
+],
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
@@ -94,6 +102,11 @@ export const localBusinessSchema = {
   "@id": "https://kdial.in",
   "url": "https://kdial.in",
   "image": "https://kdial.in/kdial-logo.png",
+  "sameAs": [
+  "https://www.facebook.com/kdial.in",
+  "https://www.instagram.com/kdial.in/"
+],
+
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "Kerala",
