@@ -4,12 +4,6 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: GPTBot
 Allow: /
 
@@ -22,8 +16,15 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 User-agent: *
 Allow: /
+
 Disallow: /admin
 Disallow: /admin/
 Disallow: /dashboard
@@ -36,3 +37,4 @@ Disallow: /api/
 Disallow: /internal/
 
 Sitemap: https://kdial.in/sitemap.xml
+Host: https://kdial.in
