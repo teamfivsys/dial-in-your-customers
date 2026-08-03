@@ -12,6 +12,7 @@ import CityPage from "./pages/CityPage";
 import CategoryPage from "./pages/CategoryPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Directory from "./pages/Directory";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/directory" element={<Directory />} />
               <Route path="/:city/:category" element={<CategoryPage />} />
               <Route path="/:city" element={<CityPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

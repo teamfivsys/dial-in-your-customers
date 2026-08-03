@@ -25,6 +25,11 @@ const entries: Entry[] = [
     changefreq: "weekly",
     priority: "0.8",
   },
+  {
+    path: "/directory",
+    changefreq: "weekly",
+    priority: "0.9",
+  },
 
   ...blogPosts.map((p) => ({
     path: `/blog/${p.slug}`,
