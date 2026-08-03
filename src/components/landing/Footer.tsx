@@ -54,6 +54,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="/directory" className={linkCls}>
+                  Business Directory
+                </a>
+              </li>
+              <li>
                 <a href="/blog" className={linkCls}>
                   Blog
                 </a>
