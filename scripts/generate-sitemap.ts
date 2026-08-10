@@ -4,14 +4,16 @@ import { resolve } from "path";
 import { keralaCities } from "../src/data/cities";
 import { businessCategories } from "../src/data/categories";
 import { blogPosts } from "../src/data/blogPosts";
+import { directoryLocations } from "../src/data/directoryLocations";
+import { approvedBusinesses, isCityCategoryIndexable } from "../src/data/businesses";
 
 const BASE_URL = "https://kdial.in";
-const today = new Date().toISOString().slice(0, 10);
 
 interface Entry {
   path: string;
   changefreq?: string;
   priority?: string;
+  lastmod?: string;
 }
 
 const entries: Entry[] = [
@@ -30,6 +32,25 @@ const entries: Entry[] = [
     changefreq: "weekly",
     priority: "0.9",
   },
+  {
+    path: "/categories",
+    changefreq: "weekly",
+    priority: "0.8",
+  },
+
+  // SEO landing pages: /business-directory-{location}
+  ...directoryLocations.map((l) => ({
+    path: `/business-directory-${l.slug}`,
+    changefreq: "weekly",
+    priority: l.slug === "kerala" ? "1.0" : "0.9",
+  })),
+
+  // Statewide category hubs
+  ...businessCategories.map((c) => ({
+    path: `/categories/${c.slug}`,
+    changefreq: "weekly",
+    priority: "0.8",
+  })),
 
   ...blogPosts.map((p) => ({
     path: `/blog/${p.slug}`,
@@ -43,13 +64,25 @@ const entries: Entry[] = [
     priority: "0.8",
   })),
 
+  // City + category pages are only included once they hold real approved
+  // listings — empty pages are noindex and stay out of the sitemap.
   ...keralaCities.flatMap((c) =>
-    businessCategories.map((cat) => ({
-      path: `/${c.slug}/${cat.slug}`,
-      changefreq: "weekly",
-      priority: "0.7",
-    }))
+    businessCategories
+      .filter((cat) => isCityCategoryIndexable(c.slug, cat.slug))
+      .map((cat) => ({
+        path: `/${c.slug}/${cat.slug}`,
+        changefreq: "weekly",
+        priority: "0.7",
+      }))
   ),
+
+  // Approved business pages
+  ...approvedBusinesses().map((b) => ({
+    path: `/businesses/${b.slug}`,
+    changefreq: "monthly",
+    priority: "0.6",
+    lastmod: b.updatedAt,
+  })),
 ];
 
 const xml = [
@@ -61,7 +94,7 @@ xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`,
     [
       `  <url>`,
       `    <loc>${BASE_URL}${e.path}</loc>`,
-      `    <lastmod>${today}</lastmod>`,
+      e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
       e.changefreq
         ? `    <changefreq>${e.changefreq}</changefreq>`
         : null,

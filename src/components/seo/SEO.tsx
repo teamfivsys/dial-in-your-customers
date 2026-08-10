@@ -11,8 +11,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "KDial | Kerala Business Directory – Pre-Booking Open",
-  description = "Join KDial, Kerala's premium verified business directory. Reserve your Founder Listing for just ₹501 and connect directly with customers across Kerala before our official launch.",
+  title = "KDial | Kerala Business Directory & Verified Business Listings",
+  description = "Discover verified businesses across Kerala with KDial. Find local businesses, services and professionals and connect directly through phone or WhatsApp.",
   keywords = "Kerala business directory, business listing Kerala, Kochi business directory, Ernakulam business listing, Trivandrum business directory, Kozhikode business directory, Thrissur business directory, verified businesses Kerala, Kerala local businesses, KDial",
   canonicalUrl = "https://kdial.in",
   ogType = "website",
