@@ -11,7 +11,7 @@ export interface BlogPost {
   featured: boolean;
 }
 
-export const blogPosts: BlogPost[] = [
+const corePosts: BlogPost[] = [
   {
     slug: "how-to-get-customers-kerala-business",
     title: "How to Get More Customers for Your Kerala Business in 2025",
@@ -343,6 +343,10 @@ Marketing is about consistency, not big budgets. Start with:
     featured: false
   }
 ];
+
+import { seoBlogPosts } from "./blogPostsSeo";
+
+export const blogPosts: BlogPost[] = [...corePosts, ...seoBlogPosts];
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
   return blogPosts.find(post => post.slug === slug);
