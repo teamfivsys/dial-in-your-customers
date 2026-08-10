@@ -236,6 +236,25 @@ const CategoryPage = () => {
         <section className="category-description py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              {listings.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold mb-4">
+                    Verified {categoryData.name} in {locationName}
+                  </h2>
+                  <ul className="grid gap-4 sm:grid-cols-2">
+                    {listings.map((b) => (
+                      <li key={b.slug} className="rounded-2xl border border-border bg-card p-5">
+                        <Link to={`/businesses/${b.slug}`} className="font-bold hover:text-primary">
+                          {b.name}
+                        </Link>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {b.locality ?? locationName}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
