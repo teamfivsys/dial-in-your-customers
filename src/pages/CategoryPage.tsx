@@ -8,6 +8,7 @@ import StructuredData from '@/components/seo/StructuredData';
 import { Button } from '@/components/ui/button';
 import { getCityBySlug, keralaCities } from '@/data/cities';
 import { getCategoryBySlug, businessCategories, CategoryData } from '@/data/categories';
+import { getBusinessesByCityCategory, isCityCategoryIndexable } from '@/data/businesses';
 
 // Generate SEO content paragraphs dynamically
 const getSEOContent = (category: CategoryData, locationName: string) => {
@@ -49,6 +50,13 @@ const CategoryPage = () => {
 
   // Get SEO content
   const seoContent = getSEOContent(categoryData, locationName);
+
+  // Indexation safety: only expose city+category pages to search engines once
+  // they hold real approved listings. Statewide pages stay indexable.
+  const listings = isStatewide
+    ? []
+    : getBusinessesByCityCategory(locationSlug, categoryData.slug);
+  const indexable = isStatewide || isCityCategoryIndexable(locationSlug, categoryData.slug);
 
   // LocalBusiness + Service Schema
   const localBusinessSchema = {
@@ -147,6 +155,7 @@ const CategoryPage = () => {
         description={`Find top rated ${categoryData.name.toLowerCase()} in ${locationName}. Compare prices, reviews and contact verified businesses on KDIAL – Kerala's business search engine.`}
         keywords={`${categoryData.name.toLowerCase()} in ${locationName}, best ${categoryData.name.toLowerCase()} ${locationName}, ${locationName} ${categoryData.slug}, verified ${categoryData.slug}, trusted ${categoryData.name.toLowerCase()}, ${categoryData.keywords.join(', ')}`}
         canonicalUrl={`https://kdial.in/${locationSlug}/${categoryData.slug}`}
+        noIndex={!indexable}
       />
       <StructuredData data={[localBusinessSchema, serviceSchema, breadcrumbSchema]} />
       
