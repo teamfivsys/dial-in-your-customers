@@ -13,6 +13,10 @@ import CategoryPage from "./pages/CategoryPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Directory from "./pages/Directory";
+import BusinessDirectoryLocation from "./pages/BusinessDirectoryLocation";
+import Categories from "./pages/Categories";
+import CategoryHub from "./pages/CategoryHub";
+import BusinessPage from "./pages/BusinessPage";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +34,10 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/directory" element={<Directory />} />
+              <Route path="/business-directory-:location" element={<BusinessDirectoryLocation />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/categories/:category" element={<CategoryHub />} />
+              <Route path="/businesses/:slug" element={<BusinessPage />} />
               <Route path="/:city/:category" element={<CategoryPage />} />
               <Route path="/:city" element={<CityPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
