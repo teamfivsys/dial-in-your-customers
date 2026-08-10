@@ -35,6 +35,8 @@ Disallow: /login
 Disallow: /signup
 Disallow: /api/
 Disallow: /internal/
+Disallow: /search
+Disallow: /*?*
 
 Sitemap: https://kdial.in/sitemap.xml
 Host: https://kdial.in
