@@ -14,10 +14,9 @@ const StructuredData = ({ data }: StructuredDataProps) => {
 
   return (
     <Helmet>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData).replace(/</g, "\\u003c")}
+      </script>
     </Helmet>
   );
 };
