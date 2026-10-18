@@ -1,252 +1,27 @@
+import { useSearchParams, Link } from "react-router-dom";
+import { MapPin, ArrowUpRight, SearchX, Search, X } from "lucide-react";
 import Header from "@/components/landing/Header";
-import Footer from "@/components/landing/Footer";
-import StickyMobileCTA from "@/components/landing/StickyMobileCTA";
-import WhatsAppCTA from "@/components/landing/WhatsAppCTA";
 import SEO from "@/components/seo/SEO";
-import StructuredData, { organizationSchema, breadcrumbSchema } from "@/components/seo/StructuredData";
-import { keralaCities } from "@/data/cities";
+import { DiscoverForm, SiteFooter } from "./Index";
+import { businesses } from "@/data/businesses";
 import { businessCategories } from "@/data/categories";
-import { CheckCircle2, MapPin, ArrowRight } from "lucide-react";
+import { keralaCities } from "@/data/cities";
+import { WHATSAPP_URL } from "@/components/landing/WhatsAppCTA";
 
-/** Curated browse-by-category shortlist (15). */
-const FEATURED_CATEGORY_SLUGS = [
-  "restaurants",
-  "dentists",
-  "ayurvedic-clinic",
-  "eye-hospital",
-  "spa-wellness",
-  "gyms",
-  "electrician",
-  "plumber",
-  "interior-designers",
-  "car-service",
-  "tuition-centres",
-  "wedding-planners",
-  "furniture-shops",
-  "advocates",
-  "ca",
-];
-
-/**
- * Replace with real, paid KDial listings as they go live.
- * Each entry renders as a featured business card.
- */
-const featuredBusinesses: {
-  name: string;
-  category: string;
-  city: string;
-  citySlug: string;
-  categorySlug: string;
-}[] = [];
-
-const sectionTitle = "text-2xl md:text-3xl font-extrabold text-foreground tracking-tight";
-const kicker = "text-xs font-bold uppercase tracking-[0.22em] text-[#FF6B1A] mb-3";
-
-const Directory = () => {
-  const picked = FEATURED_CATEGORY_SLUGS.map((s) =>
-    businessCategories.find((c) => c.slug === s)
-  ).filter(Boolean) as typeof businessCategories;
-  const categories = (picked.length >= 15 ? picked : businessCategories).slice(0, 15);
-
-  return (
-    <div className="min-h-screen bg-background">
-      <SEO
-        title="Kerala Business Directory — Verified Local Businesses | KDial"
-        description="Browse verified Kerala businesses by category and district on KDial. Zero commission, no lead reselling — contact businesses directly on WhatsApp or phone."
-        canonicalUrl="https://kdial.in/directory"
-      />
-      <StructuredData data={[organizationSchema, breadcrumbSchema]} />
-
-      <Header />
-      <main>
-        {/* Intro */}
-        <section className="py-14 md:py-20 border-b border-border">
-          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <p className={kicker}>Kerala business directory</p>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight tracking-tight mb-5">
-              Find Verified Local Businesses Across Kerala
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              Welcome to KDial — a directory built for Kerala. We cover all 14 districts, from
-              Kasaragod to Thiruvananthapuram, listing only verified businesses that pay for
-              their own profile.
-            </p>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              No commission on your work. No leads resold to five competitors. When a customer
-              finds you on KDial, they call or WhatsApp you directly — the enquiry is yours.
-            </p>
-            <div className="mt-8">
-              <WhatsAppCTA ariaLabel="List your business on WhatsApp">
-                List your business — ₹501/year
-              </WhatsAppCTA>
-            </div>
-          </div>
-        </section>
-
-        {/* Browse by Category */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <p className={kicker}>Browse by category</p>
-            <h2 className={sectionTitle}>Popular business categories in Kerala</h2>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {categories.map((cat) => (
-                <a
-                  key={cat.slug}
-                  href={`/kochi/${cat.slug}`}
-                  className="group rounded-xl border border-border bg-card px-4 py-4 hover:border-[#FF6B1A] transition-colors"
-                >
-                  <span className="block text-sm md:text-base font-bold text-foreground">
-                    {cat.name}
-                  </span>
-                  <span className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-                    Browse listings
-                    <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Browse by District */}
-        <section className="py-14 md:py-20 bg-muted/20 border-y border-border">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <p className={kicker}>Browse by district</p>
-            <h2 className={sectionTitle}>All 14 districts of Kerala</h2>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {keralaCities.map((city) => (
-                <a
-                  key={city.slug}
-                  href={`/${city.slug}`}
-                  className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm font-bold text-foreground hover:border-[#1E6FFF] transition-colors"
-                >
-                  <MapPin className="h-4 w-4 text-[#1E6FFF] shrink-0" />
-                  {city.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Businesses */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <p className={kicker}>Featured businesses</p>
-            <h2 className={sectionTitle}>Verified KDial members</h2>
-            {featuredBusinesses.length > 0 ? (
-              <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {featuredBusinesses.map((b) => (
-                  <a
-                    key={`${b.name}-${b.citySlug}`}
-                    href={`/${b.citySlug}/${b.categorySlug}`}
-                    className="rounded-2xl border border-border bg-card p-5 hover:border-[#FF6B1A] transition-colors"
-                  >
-                    <p className="text-base font-extrabold text-foreground">{b.name}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {b.category} · {b.city}
-                    </p>
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <div className="mt-8 rounded-2xl border border-dashed border-border bg-card p-8 text-center">
-                <p className="text-base font-bold text-foreground">
-                  Founder listings are being verified now
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground max-w-xl mx-auto">
-                  The first verified Kerala businesses appear here at launch. Reserve your spot
-                  during the founder period and be one of them.
-                </p>
-                <div className="mt-6">
-                  <WhatsAppCTA ariaLabel="Reserve a founder listing on WhatsApp">
-                    Reserve my founder listing
-                  </WhatsAppCTA>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Why list on KDial */}
-        <section className="py-14 md:py-20 bg-muted/20 border-y border-border">
-          <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-            <p className={kicker}>Why KDial</p>
-            <h2 className={sectionTitle}>Why list on KDial?</h2>
-            <ul className="mt-8 space-y-5">
-              {[
-                {
-                  h: "Zero commission, ever",
-                  p: "One flat yearly fee. We never take a cut of the work a customer brings you.",
-                },
-                {
-                  h: "Your leads stay yours",
-                  p: "Enquiries go straight to your phone and WhatsApp — never resold to competitors.",
-                },
-                {
-                  h: "Verified-only directory",
-                  p: "Every listing is checked before it goes live, so customers trust what they find.",
-                },
-                {
-                  h: "Built to rank on Google",
-                  p: "Each category and district page is search-optimised for Kerala buyers looking right now.",
-                },
-              ].map((b) => (
-                <li key={b.h} className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-[#1E6FFF] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-bold text-foreground">{b.h}</p>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                      {b.p}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* How it works */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <p className={kicker}>How it works</p>
-            <h2 className={sectionTitle}>Three steps to get listed</h2>
-            <ol className="mt-8 grid md:grid-cols-3 gap-4">
-              {[
-                { n: "01", h: "Message us on WhatsApp", p: "Tell us your business name, category and district." },
-                { n: "02", h: "Get verified", p: "We confirm your details and prepare your profile." },
-                { n: "03", h: "Go live", p: "Your listing publishes on your district and category pages." },
-              ].map((s) => (
-                <li key={s.n} className="rounded-2xl border border-border bg-card p-6">
-                  <span className="text-sm font-extrabold text-[#FF6B1A]">{s.n}</span>
-                  <p className="mt-2 text-base font-extrabold text-foreground">{s.h}</p>
-                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{s.p}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-14 md:py-20 bg-muted/20 border-t border-border">
-          <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
-            <h2 className={sectionTitle}>Be found by Kerala customers this year</h2>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-              KDial is opening with a limited founder period at ₹501 for the year — a verified
-              profile, your own district and category pages, and every enquiry sent straight to
-              you. Message us and we'll get your business listed.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <WhatsAppCTA ariaLabel="Get listed on KDial via WhatsApp">
-                Get listed on KDial
-              </WhatsAppCTA>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-      <StickyMobileCTA />
-    </div>
-  );
-};
-
-export default Directory;
+export default function Directory() {
+  const [params, setParams] = useSearchParams();
+  const city = params.get("city") ?? "";
+  const category = params.get("category") ?? "";
+  const q = params.get("q") ?? "";
+  const cityName = keralaCities.find(c => c.slug === city)?.name;
+  const categoryName = businessCategories.find(c => c.slug === category)?.name;
+  const results = businesses.filter(b => b.status === "approved" && (!city || b.citySlug === city) && (!category || b.categorySlug === category) && (!q || [b.name,b.description,b.locality,...(b.services ?? []),businessCategories.find(c => c.slug === b.categorySlug)?.name].filter(Boolean).join(" ").toLowerCase().includes(q.toLowerCase())));
+  function changeCategory(value: string) { const next = new URLSearchParams(params); if(value) next.set("category", value); else next.delete("category"); setParams(next); }
+  return <div className="kd-site"><SEO title="Explore local businesses in Kerala | KDial" description="Browse published KDial business listings by city, category and service. KDial is in pre-launch, with launch planned for November 1, 2026." canonicalUrl="https://kdial.in/directory" noIndex={results.length === 0 || !!(city || category || q)}/><Header/><main id="main-content">
+    <section className="kd-directory-head"><div className="kd-wrap"><a className="kd-back" href="/">Home / Directory</a><p className="kd-eyebrow">Explore your local</p><h1>Find your kind of business.</h1><p className="kd-intro">Choose a place. Find a service. See what's been published.</p><DiscoverForm key={`${city}:${q}`} initialCity={city} initialQuery={q}/></div></section>
+    <section className="kd-wrap kd-section kd-directory-body"><aside className="kd-filters"><label htmlFor="category-select">Browse by category</label><select id="category-select" value={category} onChange={e=>changeCategory(e.target.value)}><option value="">All categories</option>{businessCategories.map(c=><option key={c.slug} value={c.slug}>{c.name}</option>)}</select><p>PRE-LAUNCH</p><h3>A directory taking shape.</h3><span>Launch planned for November 1, 2026. Only approved, published businesses appear here.</span><a href="/#founders">Own a business? <ArrowUpRight size={16}/></a></aside>
+      <div className="kd-results"><div className="kd-result-heading"><h2>{categoryName ?? "All businesses"}{cityName ? ` in ${cityName}` : ""}</h2><span>{results.length} published {results.length === 1 ? "listing" : "listings"}</span></div>{(q || category || city) && <div className="kd-active-filters">{[q, categoryName, cityName].filter(Boolean).map((v,i)=><span key={`${v}-${i}`}>{v}</span>)}<button onClick={()=>setParams({})}>Clear filters <X size={14}/></button></div>}
+      {results.length ? <div className="kd-business-grid">{results.map(b=><Link className="kd-business" to={`/businesses/${b.slug}`} key={b.slug}><span><MapPin size={16}/>{b.locality ?? keralaCities.find(c=>c.slug===b.citySlug)?.name}</span><h3>{b.name}</h3><p>{b.description}</p><strong>View business <ArrowUpRight size={16}/></strong></Link>)}</div> : <div className="kd-empty"><span className="kd-empty-icon"><SearchX size={32}/></span><p className="kd-eyebrow">No published matches yet</p><h3>{businesses.some(b=>b.status==="approved") ? "Try a wider search." : "The first local connections start here."}</h3><p>{businesses.some(b=>b.status==="approved") ? "Try another city, choose a different category, or clear the filters." : "We're preparing for launch. There aren't any published businesses in this selection yet. Check back as real listings are added."}</p><button className="kd-button kd-button-secondary" onClick={()=>setParams({})}><Search size={17}/> Browse all businesses</button><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="kd-text-link">Ask about listing your business <ArrowUpRight size={17}/></a></div>}
+      </div>
+    </section></main><SiteFooter/></div>;
+}
