@@ -1,0 +1,5 @@
+/demo/directory /index.html 200
+/demo/businesses/* /index.html 200
+/admin /index.html 200
+/submit-business /index.html 200
+/404 /index.html 200

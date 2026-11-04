@@ -36,8 +36,7 @@ const Footer = () => {
             />
 
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">
-              Kerala's paid-only, verified business directory. Customers on
-              WhatsApp, direct.
+              Kerala's business directory, in pre-launch and starting with Kochi.
             </p>
           </div>
 

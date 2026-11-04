@@ -1,0 +1,48 @@
+{
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/directory",
+      "destination": "/api/directory-route?kdial_path=/directory"
+    },
+    {
+      "source": "/business-directory-kochi",
+      "destination": "/api/directory-route?kdial_path=/business-directory-kochi"
+    },
+    {
+      "source": "/businesses/:slug",
+      "destination": "/api/directory-route?kdial_path=/businesses/:slug"
+    },
+    {
+      "source": "/demo/directory",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/demo/businesses/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/submit-business",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/404",
+      "destination": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/directory-route.mjs": {
+      "includeFiles": "dist/app-shell.html"
+    }
+  }
+}

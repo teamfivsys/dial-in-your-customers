@@ -5,7 +5,7 @@ interface State {
 }
 
 const whatsappMessage = encodeURIComponent(
-  "Hi KDial Team! I want to lock my ₹501 Pre-Booking Offer."
+  "Hi KDial team, I am enquiring about the Founder Package: ₹501 for the first year and ₹701 at renewal after the first year. The one-year term starts when the listing is published. Renewal is manual and requires a new affirmative payment; there is no automatic renewal or auto-charge. Please confirm inclusions and payment terms. I understand this is an enquiry only, not a booking or payment."
 );
 const whatsappLink = `https://wa.me/917356137106?text=${whatsappMessage}`;
 
@@ -17,7 +17,6 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
   }
 
   componentDidCatch(error: Error, info: unknown) {
-    // eslint-disable-next-line no-console
     console.error("[KDial] ErrorBoundary caught:", error, info);
   }
 
@@ -48,14 +47,13 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
               marginBottom: 12,
             }}
           >
-            KDial · Kerala's paid-only directory
+            KDial · Kerala business directory · Pre-launch
           </p>
           <h1 style={{ fontSize: 28, fontWeight: 700, margin: "0 0 12px", lineHeight: 1.1 }}>
-            Lock your ₹501 founder slot
+            KDial is temporarily unavailable
           </h1>
           <p style={{ maxWidth: 360, fontSize: 15, opacity: 0.8, margin: "0 0 24px" }}>
-            The page is having trouble loading. You can still register directly on WhatsApp — we'll
-            reserve your slot right away.
+            The page is having trouble loading. KDial is still pre-launch. The Founder Package is ₹501 for the first year and ₹701 at renewal after the first year; the one-year term starts when the listing is published. Ask us to confirm inclusions and payment terms. This enquiry does not reserve or activate a listing, or collect payment.
           </p>
           <a
             href={whatsappLink}
@@ -71,7 +69,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
               fontSize: 15,
             }}
           >
-            Register on WhatsApp →
+            Ask about the Founder Package →
           </a>
           <button
             type="button"

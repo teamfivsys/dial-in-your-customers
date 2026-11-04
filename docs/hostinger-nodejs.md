@@ -1,0 +1,34 @@
+# Hostinger managed Node.js path
+
+`server/hostinger.mjs` serves the built site, MySQL-backed directory/profile/sitemap routes, and the same-origin MySQL APIs. The Vercel and Cloudflare adapters remain separate; this does not replace them. The local Node server uses Hostinger's assigned `PORT` and optional `HOST`.
+
+## Build and runtime settings
+
+- The repo requires Node `>=22.12.0`; Hostinger currently lists Node 22 and 24 for its managed app service, so select Node 22 or 24. It accepts ZIP uploads and supports environment variables. The repo uses pnpm 11 via `pnpm-lock.yaml`; build with `pnpm build` and start with `pnpm start` / `node server/hostinger.mjs`. The workspace explicitly allows only the SWC and esbuild install scripts needed by the build, so non-interactive pnpm 11 installs do not stop for a build-script approval prompt.
+- For the Hostinger build, set the non-secret build-time flag `VITE_DIRECTORY_API_MODE=hostinger-mysql`. Keep `VITE_DIRECTORY_BACKEND_ENABLED=false` so legacy Supabase mode is not enabled by accident. The flag selects the MySQL directory, admin, submission, payment-offer/report and analytics adapters.
+- Set server-only `KDIAL_MYSQL_HOST`, `KDIAL_MYSQL_PORT`, `KDIAL_MYSQL_USER`, `KDIAL_MYSQL_PASSWORD`, and `KDIAL_MYSQL_DATABASE` in the Node runtime environment. Hostinger's current MySQL connection guide uses `127.0.0.1:3306` for an app and database on its hosting environment; use that exact host rather than `localhost`. The app defaults to certificate-verified TLS for remote database hosts. To match Hostinger's documented loopback connection, `KDIAL_MYSQL_TLS=false` is permitted only when the configured host is literally `127.0.0.1` or `::1`; remote hosts cannot disable TLS. Confirm the actual plan's supported TLS behavior in the account before launch. Never use a `VITE_` prefix for any credential.
+- Set `KDIAL_APP_ORIGIN` to the exact HTTPS public origin. The admin uses same-origin and CSRF checks.
+- Configure Turnstile using build-time `VITE_TURNSTILE_SITE_KEY` and server-only `KDIAL_TURNSTILE_SECRET`; set a random high-entropy `KDIAL_SUBMISSION_RATE_SECRET` for hashed submission abuse limits. Public intake/report endpoints fail closed when required protections are missing.
+- For admin password recovery, configure `KDIAL_SMTP_HOST`, `KDIAL_SMTP_PORT`, `KDIAL_SMTP_USER`, `KDIAL_SMTP_PASSWORD` and `KDIAL_SMTP_FROM`. Without SMTP, recovery is unavailable and the server fails closed.
+- Customer payment previews require server-only `KDIAL_UPI_PAYEE`, `KDIAL_UPI_ID` and `KDIAL_UPI_QR_BASE64` values. Do not activate an offer until actual package terms and the payment destination are reviewed. Submitting a payment reference does not confirm receipt; finance must independently verify the bank credit.
+- The prepared ZIP contains source and a blank `.env.example`, not Git history, dependencies, build output, local environment files, test-results, or artifacts. Hostinger's public docs list Managed MySQL and daily/on-demand backups, but the plan-specific database version, resource limits, backup retention and exact local TLS behavior still need confirmation against the India checkout/account before purchase. Confirm the localized upfront total, commitment length, renewal price and refund terms in checkout; regional promotions change.
+
+## Staging-only Turnstile preparation
+
+Felix selected `staging.kdial.in`. The Cloudflare “KDial staging preview” widget allows that hostname and `kdial-staging-preview.pages.dev`; its public site key is `0x4AAAAAAFbXO-1319tR6bVS` (Managed mode, no pre-clearance). `env.hostinger-staging.example` records the public build key and planned staging origin only as a template. The matching Turnstile secret has not been verified or configured; the existing saved secret is scoped to the Supabase setup. Do not enable payment reporting until the matching server-only secret is securely installed in the provisioned staging service and the end-to-end report flow is tested. Production must use a separate hostname/configuration.
+
+## Database setup and recovery boundary
+
+Review migrations `mysql/migrations/001_public_directory.sql` through `004_admin_password_recovery.sql` and apply them only to a newly provisioned or otherwise backed-up database. No business/customer rows are seeded. Run the one-time first-owner setup from a trusted interactive terminal: `node server/mysql/bootstrap-owner.mjs admin@example.com`; it prompts for and verifies a password without echo. Additional accounts and role assignments require an authorized operator and deliberate DB-side provisioning; there is no public sign-up or role-management UI.
+
+Before any production migration, make a Hostinger-supported export/backup and retain it outside the app host, then restore a copy into a disposable database and verify schema plus representative data before switching traffic. The repository's local `pnpm test:mysql-backup-restore` round-trip only verifies local MariaDB dump/restore. Hostinger's public plan documentation advertises daily and on-demand backups; that is evidence of the product feature, not a test of account-specific retention, restore access, actual data restore, or recovery time. The MySQL connection guide specifies loopback but does not state whether TLS is required/available for that path. No live Hostinger account exists here, so exact database version, limits, TLS behavior, backup restore, environment handling and SMTP/network policies cannot be tested before provisioning.
+
+## Migration scope and release boundary
+
+The current MySQL candidate implements the basic directory plus role-checked admin and moderated/manual-payment workflows described in `docs/hostinger-mysql-migration-status.md`. The retained Supabase integration is available only to non-MySQL deployment mode; MySQL mode selects same-origin MySQL APIs and fails closed rather than silently using Supabase. The local source is not a live deployment, production data move, security certification or payment processor. No hosting was purchased, no external DB/account was changed and nothing was deployed.
+
+Do not switch production traffic until the data migration is planned and reviewed, backups and isolated restore are verified with the actual Hostinger service, SMTP/CAPTCHA/payment destinations and role accounts are deliberately configured, and the full application is checked in a staging environment. For the latest exact local test results and feature limits, read `docs/hostinger-mysql-migration-status.md`.
+
+## Local checks
+
+Run `pnpm check`, `pnpm test:mysql-config`, `pnpm test:mysql`, `pnpm test:hostinger`, `pnpm test:pages`, `pnpm test:edge`, `pnpm test:payment-edge`, `pnpm test:security`, `pnpm test:mysql-admin-integration`, `pnpm test:mysql-ui`, `pnpm test:submission-ui` and `pnpm test:mysql-backup-restore`. Local checks don't certify Hostinger or production behavior.

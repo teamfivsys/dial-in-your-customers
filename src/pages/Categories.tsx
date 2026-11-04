@@ -4,7 +4,8 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import StickyMobileCTA from "@/components/landing/StickyMobileCTA";
 import SEO from "@/components/seo/SEO";
-import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
+import StructuredData from "@/components/seo/StructuredData";
+import { organizationSchema } from "@/data/structuredSchemas";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { businessCategories } from "@/data/categories";
 

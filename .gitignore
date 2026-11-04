@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Temporary dependency patch working copies
+.dependency-patches/
+.local-stack/

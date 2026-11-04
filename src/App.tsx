@@ -9,14 +9,13 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 const NotFound = lazy(() => import("./pages/NotFound"));
-const CityPage = lazy(() => import("./pages/CityPage"));
-const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const LegacyDirectoryRoute = lazy(() => import("./components/directory/LegacyDirectoryRoute"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Directory = lazy(() => import("./pages/Directory"));
-const BusinessDirectoryLocation = lazy(() => import("./pages/BusinessDirectoryLocation"));
-const Categories = lazy(() => import("./pages/Categories"));
-const CategoryHub = lazy(() => import("./pages/CategoryHub"));
+const SubmitBusiness = lazy(() => import("./pages/SubmitBusiness"));
+const Admin = lazy(() => import("./pages/Admin"));
+const PaymentOffer = lazy(() => import("./pages/PaymentOffer"));
 const BusinessPage = lazy(() => import("./pages/BusinessPage"));
 
 const queryClient = new QueryClient();
@@ -35,13 +34,20 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/404" element={<NotFound />} />
               <Route path="/directory" element={<Directory />} />
-              <Route path="/business-directory-:location" element={<BusinessDirectoryLocation />} />
-              <Route path="/categories" element={<Categories />} />
-              <Route path="/categories/:category" element={<CategoryHub />} />
+              <Route path="/demo/directory" element={<Directory demo />} />
+              <Route path="/demo/businesses/:slug" element={<BusinessPage demo />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/pay/:token" element={<PaymentOffer />} />
+              <Route path="/submit-business" element={<SubmitBusiness />} />
+              <Route path="/business-directory-kochi" element={<Directory />} />
+              <Route path="/business-directory-:location" element={<LegacyDirectoryRoute />} />
+              <Route path="/categories" element={<LegacyDirectoryRoute />} />
+              <Route path="/categories/:category" element={<LegacyDirectoryRoute />} />
               <Route path="/businesses/:slug" element={<BusinessPage />} />
-              <Route path="/:city/:category" element={<CategoryPage />} />
-              <Route path="/:city" element={<CityPage />} />
+              <Route path="/:city/:category" element={<LegacyDirectoryRoute />} />
+              <Route path="/:city" element={<LegacyDirectoryRoute />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

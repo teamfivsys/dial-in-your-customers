@@ -190,6 +190,7 @@ const BlogPost = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-3xl mx-auto"
             >
+              <aside className="mb-8 rounded-lg border border-border p-4" aria-label="Current offer terms"><p>This historical article may describe older prices, pre-bookings or benefits. It is not the current offer. Current pricing is ₹501 for the first year and ₹701 at the first renewal; the year starts on publication. Renewal requires a new affirmative payment, with no auto-charge. Package inclusions remain unconfirmed.</p><a href="/#listing-terms" className="underline">Current renewal and refund terms</a></aside>
               <article className="article-content prose prose-lg max-w-none">
                 {/* Convert markdown-like content to HTML */}
                 {post.content.split('\n').map((line, index) => {
@@ -305,16 +306,16 @@ const BlogPost = () => {
         <section className="py-12 bg-gradient-to-r from-primary to-secondary">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl font-bold text-white mb-4">
-              Ready to List Your Business on KDIAL?
+              Interested in KDial’s planned launch?
             </h2>
             <p className="text-white/90 mb-6">
-              Pre-book your listing at just ₹501/year
+              Ask about the Founder Package: ₹501 for the first year and ₹701 at renewal after the first year. The one-year term starts when the listing is published. Renewal is manual and requires a new affirmative payment; there is no automatic renewal or auto-charge.
             </p>
             <Link
               to="/"
               className="inline-flex items-center gap-2 bg-white text-primary hover:bg-white/90 font-semibold px-6 py-3 rounded-lg transition-colors"
             >
-              Get Started
+              View launch details
             </Link>
           </div>
         </section>

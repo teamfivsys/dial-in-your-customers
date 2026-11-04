@@ -2,26 +2,38 @@ import { useSearchParams, Link } from "react-router-dom";
 import { MapPin, ArrowUpRight, SearchX, Search, X } from "lucide-react";
 import Header from "@/components/landing/Header";
 import SEO from "@/components/seo/SEO";
-import { DiscoverForm, SiteFooter } from "./Index";
-import { businesses } from "@/data/businesses";
-import { businessCategories } from "@/data/categories";
-import { keralaCities } from "@/data/cities";
-import { WHATSAPP_URL } from "@/components/landing/WhatsAppCTA";
+import { SiteFooter } from "./Index";
+import { useDirectoryTaxonomy } from "@/hooks/use-directory-taxonomy";
+import { filterListings, profilePath, DEMO_ENABLED, callHref, whatsappHref, verificationLabel } from "@/lib/directory";
+import { useListings } from "@/hooks/use-listings";
+import DemoNotice from "@/components/directory/DemoNotice";
+import NotFound from "./NotFound";
 
-export default function Directory() {
+export default function Directory({demo = false}: {demo?: boolean}) {
   const [params, setParams] = useSearchParams();
-  const city = params.get("city") ?? "";
+  const {records, loading, error, retry} = useListings(demo);
   const category = params.get("category") ?? "";
   const q = params.get("q") ?? "";
-  const cityName = keralaCities.find(c => c.slug === city)?.name;
-  const categoryName = businessCategories.find(c => c.slug === category)?.name;
-  const results = businesses.filter(b => b.status === "approved" && (!city || b.citySlug === city) && (!category || b.categorySlug === category) && (!q || [b.name,b.description,b.locality,...(b.services ?? []),businessCategories.find(c => c.slug === b.categorySlug)?.name].filter(Boolean).join(" ").toLowerCase().includes(q.toLowerCase())));
-  function changeCategory(value: string) { const next = new URLSearchParams(params); if(value) next.set("category", value); else next.delete("category"); setParams(next); }
-  return <div className="kd-site"><SEO title="Explore local businesses in Kerala | KDial" description="Browse published KDial business listings by city, category and service. KDial is in pre-launch, with launch planned for November 1, 2026." canonicalUrl="https://kdial.in/directory" noIndex={results.length === 0 || !!(city || category || q)}/><Header/><main id="main-content">
-    <section className="kd-directory-head"><div className="kd-wrap"><a className="kd-back" href="/">Home / Directory</a><p className="kd-eyebrow">Explore your local</p><h1>Find your kind of business.</h1><p className="kd-intro">Choose a place. Find a service. See what's been published.</p><DiscoverForm key={`${city}:${q}`} initialCity={city} initialQuery={q}/></div></section>
-    <section className="kd-wrap kd-section kd-directory-body"><aside className="kd-filters"><label htmlFor="category-select">Browse by category</label><select id="category-select" value={category} onChange={e=>changeCategory(e.target.value)}><option value="">All categories</option>{businessCategories.map(c=><option key={c.slug} value={c.slug}>{c.name}</option>)}</select><p>PRE-LAUNCH</p><h3>A directory taking shape.</h3><span>Launch planned for November 1, 2026. Only approved, published businesses appear here.</span><a href="/#founders">Own a business? <ArrowUpRight size={16}/></a></aside>
-      <div className="kd-results"><div className="kd-result-heading"><h2>{categoryName ?? "All businesses"}{cityName ? ` in ${cityName}` : ""}</h2><span>{results.length} published {results.length === 1 ? "listing" : "listings"}</span></div>{(q || category || city) && <div className="kd-active-filters">{[q, categoryName, cityName].filter(Boolean).map((v,i)=><span key={`${v}-${i}`}>{v}</span>)}<button onClick={()=>setParams({})}>Clear filters <X size={14}/></button></div>}
-      {results.length ? <div className="kd-business-grid">{results.map(b=><Link className="kd-business" to={`/businesses/${b.slug}`} key={b.slug}><span><MapPin size={16}/>{b.locality ?? keralaCities.find(c=>c.slug===b.citySlug)?.name}</span><h3>{b.name}</h3><p>{b.description}</p><strong>View business <ArrowUpRight size={16}/></strong></Link>)}</div> : <div className="kd-empty"><span className="kd-empty-icon"><SearchX size={32}/></span><p className="kd-eyebrow">No published matches yet</p><h3>{businesses.some(b=>b.status==="approved") ? "Try a wider search." : "The first local connections start here."}</h3><p>{businesses.some(b=>b.status==="approved") ? "Try another city, choose a different category, or clear the filters." : "We're preparing for launch. There aren't any published businesses in this selection yet. Check back as real listings are added."}</p><button className="kd-button kd-button-secondary" onClick={()=>setParams({})}><Search size={17}/> Browse all businesses</button><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="kd-text-link">Ask about listing your business <ArrowUpRight size={17}/></a></div>}
-      </div>
-    </section></main><SiteFooter/></div>;
+  const locality = params.get("locality") ?? "";
+  const city = params.get("city") ?? "";
+  const {categories: allCategories,localities: allLocalities} = useDirectoryTaxonomy(demo);
+  const categoryName = allCategories.find(c => c.slug === category)?.label;
+  const results = filterListings(records, {q, category, locality, city, categoryLabels: Object.fromEntries(allCategories.map(c => [c.slug, c.label]))});
+  const localities = [...new Set([...allLocalities.map(l=>l.label),...records.map(b => b.locality).filter(Boolean)])].sort();
+  const categories = allCategories;
+  function change(name: string, value: string) { const next = new URLSearchParams(params); if(value) next.set(name, value); else next.delete(name); setParams(next); }
+  if (demo && !DEMO_ENABLED) return <NotFound/>;
+  return <div className="kd-site kd-directory-page"><SEO title={demo ? "Fictional directory demo | KDial" : "Kochi business directory | KDial"} description="Search KDial’s published Kochi business listings by service, category and locality. Directory in preparation." canonicalUrl="https://kdial.in/directory" noIndex={demo || !results.length || !!params.size}/><Header/>{demo && <DemoNotice/>}<main id="main-content">
+    <section className="kd-directory-head"><div className="kd-wrap"><Link className="kd-back" to="/">Home / Directory</Link><p className="kd-eyebrow">Kochi / Business directory</p><h1>Find a business in Kochi.</h1><p className="kd-intro">Search by service. Narrow it down to your neighbourhood.</p>
+    <form className="kd-search" role="search" onSubmit={e => {e.preventDefault(); const value = new FormData(e.currentTarget).get("q"); change("q", String(value ?? "").trim());}}>
+      <label className="kd-search-field"><Search size={21}/><span className="sr-only">Business or service</span><input key={q} name="q" defaultValue={q} placeholder="Business or service"/></label>
+      <span className="kd-location-fixed"><MapPin size={18}/>Kochi</span><button className="kd-button" type="submit">Search</button>
+    </form><div className="kd-area-index"><span>Browse by neighbourhood</span>{allLocalities.slice(0,6).map(l=><button key={l.slug} onClick={()=>change("locality",l.label)} aria-pressed={locality===l.label}>{l.label}</button>)}</div></div></section>
+    <section className="kd-wrap kd-section kd-directory-body"><aside className="kd-filters"><label htmlFor="category-select">Category</label><select id="category-select" value={category} onChange={e=>change("category",e.target.value)}><option value="">All categories</option>{categories.map(c=><option key={c.slug} value={c.slug}>{c.label}</option>)}</select>
+      <label htmlFor="locality-select" className="kd-filter-space">Neighbourhood</label><select id="locality-select" value={locality} onChange={e=>change("locality",e.target.value)}><option value="">All neighbourhoods</option>{localities.map(l=><option key={l} value={l}>{l}</option>)}{locality && !localities.includes(locality) && <option value={locality}>{locality}</option>}</select>
+      <p>{demo ? "DEVELOPMENT PREVIEW" : "PRE-LAUNCH"}</p><h3>Before you visit</h3><span>{demo ? "All records are fictional. No verification or payment has taken place." : "Check each business profile for its address, contact details and supplied hours. Only approved listings appear here."}</span><Link className="kd-text-link" to="/submit-business">List your business <ArrowUpRight size={15}/></Link></aside>
+      <div className="kd-results" aria-live="polite"><div className="kd-result-heading"><h2>{categoryName ?? "All businesses"} in Kochi</h2><span>{loading ? "Loading…" : `${results.length} ${demo ? "demo" : "published"} ${results.length === 1 ? "listing" : "listings"}`}</span></div>
+      {!!params.size && <div className="kd-active-filters">{[q,categoryName,locality,city && city !== "kochi" ? city : ""].filter(Boolean).map((v,i)=><span key={i}>{v}</span>)}<button onClick={()=>setParams({})}>Clear filters <X size={14}/></button></div>}
+      {loading ? <p role="status" className="kd-empty">Loading business listings…</p> : error ? <div role="alert" className="kd-empty"><h3>We couldn’t load the directory.</h3><p>{error}</p><button className="kd-button" onClick={retry}>Try again</button></div> : results.length ? <div className="kd-business-grid">{results.map(b=><article className="kd-business" key={b.slug}>{b.photos?.[0] && <img className="kd-card-image" src={b.photos[0]} alt={b.demo ? "Fictional illustration" : b.name}/>}<span><MapPin size={16}/>{b.locality ?? "Kochi"}</span>{!demo && <small className="kd-card-verified">{verificationLabel(b.verified, b.verifiedAt).replace("Business details ", "")}</small>}<h3>{b.name}</h3><span className="kd-card-category">{allCategories.find(c=>c.slug===b.categorySlug)?.label ?? b.categorySlug}</span><p>{b.description}</p><small className="kd-card-address">{b.address}</small><div className="kd-card-actions"><Link to={profilePath(b.slug,demo)}>View business <ArrowUpRight size={16}/></Link>{!demo && callHref(b.phone) && <a href={callHref(b.phone)} aria-label={`Call ${b.name}`}>Call</a>}{!demo && whatsappHref(b.whatsapp) && <a href={whatsappHref(b.whatsapp)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${b.name}`}>WhatsApp</a>}</div></article>)}</div> : <div className="kd-empty"><span className="kd-empty-icon"><SearchX size={32}/></span><p className="kd-eyebrow">{records.length ? "No matches" : "No published listings yet"}</p><h3>{records.length ? "Try a wider search." : "No businesses published yet."}</h3><p>{records.length ? "Try another service or neighbourhood, or clear your filters." : "We’re preparing the Kochi directory. Business submissions stay private until they’ve been reviewed and approved."}</p>{records.length || params.size ? <button className="kd-button kd-button-secondary" onClick={()=>setParams({})}>Clear filters</button> : <Link className="kd-text-link" to="/submit-business">Submit your business for review <ArrowUpRight size={16}/></Link>}</div>}
+      </div></section></main><SiteFooter/></div>;
 }

@@ -240,7 +240,7 @@ const Blog = () => {
                 Ready to Grow Your Kerala Business?
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                Pre-book your KDIAL listing today and reach more customers.
+                KDial is still pre-launch. Ask about the Founder Package: ₹501 for the first year and ₹701 at renewal after the first year. The one-year term starts when the listing is published. Renewal is manual and requires a new affirmative payment; there is no automatic renewal or auto-charge.
               </p>
               <Link
                 to="/"

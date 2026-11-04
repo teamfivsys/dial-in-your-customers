@@ -51,6 +51,10 @@ function getSessionId(): string {
 }
 
 async function logEvent(variant: Variant, event: "impression" | "whatsapp_click") {
+  if (import.meta.env.VITE_DIRECTORY_API_MODE === "hostinger-mysql") {
+    try { await fetch("/api/v1/analytics",{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({variant,event,session_id:getSessionId(),path:typeof window!=="undefined"?window.location.pathname:null})}); } catch { /* analytics never blocks UX */ }
+    return;
+  }
   try {
     const { supabase } = await import("@/integrations/supabase/client");
     await supabase.from("ab_events").insert({

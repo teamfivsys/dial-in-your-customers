@@ -1,0 +1,10 @@
+KDial directory feature update (local source only)
+
+- Search matches listing name, description, service terms, category slug/label, locality and address, with case/accent normalization while retaining Kochi and approved-listing filters.
+- Public listings show verification status and the explicit MySQL content_verified_at date, not the generic updated_at timestamp. The admin edit flow clears verification when a listing changes; if no verification date exists, the UI says so.
+- Call and WhatsApp links appear on listing cards and profiles only when the supplied number normalizes to a valid Indian mobile number. No listing records were seeded.
+- Removed all 14 react-refresh/only-export-components lint warnings by separating data, style helpers and hooks into non-component modules and making navigation aliases component wrappers. The lint rule was not disabled or broadened; feature behavior remains unchanged.
+
+Checks after the cleanup: pnpm lint (0 warnings, 0 errors); pnpm test:unit (9 passed); pnpm test:mysql (3 passed); pnpm typecheck passed; pnpm build passed. ESLint reported 14 warnings before the cleanup; there are none afterward.
+
+This is a local source artifact only. It has not been pushed, deployed, or tested against a live directory or database.

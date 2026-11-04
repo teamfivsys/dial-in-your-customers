@@ -13,6 +13,8 @@ try {
   const { render } = await import(pathToFileURL(resolve(".prerender/entry.mjs")).href);
   const { head, body } = render();
   let html = readFileSync("dist/index.html", "utf8");
+  // Retain the original Vite shell for route-specific HTTP rendering.
+  writeFileSync("dist/app-shell.html", html);
   if (!html.includes('<!--seo-head-start-->') || !html.includes('<div id="root"></div>')) throw new Error("Prerender template markers missing");
   html = html.replace(/<!--seo-head-start-->[\s\S]*?<!--seo-head-end-->/, head)
     .replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);

@@ -1,0 +1,26 @@
+import {test,expect} from '@playwright/test';
+test('validated mobile submission sends consent and shows pending receipt with mocked CAPTCHA/API',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.route('**/turnstile/v0/api.js*',route=>route.fulfill({contentType:'application/javascript',body:''}));
+ await page.addInitScript(()=>{window.turnstile={render:(_el,options)=>{queueMicrotask(()=>{(options.callback as (v:string)=>void)('fictional-captcha-token');});return 'fictional-widget';},remove:()=>{},reset:()=>{}};});
+ await page.route('**/api/v1/taxonomy',route=>route.fulfill({json:{categories:[{slug:'cafes',label:'Cafés'}],localities:[{slug:'kaloor',label:'Kaloor'}]}}));
+ let sent:Record<string,unknown>|undefined;
+ await page.route('**/api/v1/submissions',route=>{sent=route.request().postDataJSON();return route.fulfill({status:201,json:{id:'fictional-submission',status:'pending'}});});
+ await page.goto('/submit-business');
+ await page.getByLabel('Business name',{exact:true}).fill('Fictional Studio Test');
+ await page.getByRole('combobox').nth(0).selectOption('cafes');
+ await page.getByRole('combobox').nth(1).selectOption('kaloor');
+ await page.getByLabel('Full business address').fill('Fictional test address — not real');
+ await page.getByLabel('Public business phone').fill('+919876543210');
+ await page.getByLabel('Your email (kept private)').fill('test@example.invalid');
+ await page.getByLabel('What does your business offer?').fill('A fictional business used only in a local automated interface test.');
+ await page.getByRole('button',{name:'Submit for review'}).click();expect(sent).toBeUndefined();
+ await page.getByRole('checkbox',{name:/authorized to represent/}).check();
+ await page.evaluate(()=>{const b=document.createElement('div');b.textContent='FICTIONAL UI TEST · MOCKED CAPTCHA/API';b.style.cssText='position:fixed;top:0;left:0;right:0;background:#17345e;color:white;text-align:center;font:10px Arial;padding:7px;z-index:99999';document.body.style.paddingTop='28px';document.body.append(b);});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.screenshot({path:'artifacts/submission-mobile-fixture.png',fullPage:true});
+ await page.getByRole('button',{name:'Submit for review'}).click();
+ await expect(page.getByRole('heading',{name:'Your business is in the review queue.'})).toBeVisible();
+ expect(sent?.consent).toBe(true);expect(sent?.whatsapp).toBe('');expect(sent?.captcha_token).toBe('fictional-captcha-token');
+ await page.screenshot({path:'artifacts/submission-receipt-mobile-fixture.png',fullPage:true});
+});

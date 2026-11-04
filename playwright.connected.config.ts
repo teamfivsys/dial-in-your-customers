@@ -1,0 +1,3 @@
+import {defineConfig} from '@playwright/test';import {readFileSync} from 'node:fs';
+const keys=JSON.parse(readFileSync('.local-stack/keys.json','utf8'));
+export default defineConfig({testDir:'tests/browser-connected',timeout:90000,use:{baseURL:'http://127.0.0.1:4173',headless:true,reducedMotion:'reduce',trace:'off',screenshot:'off',video:'off'},webServer:{command:'pnpm dev --host 127.0.0.1 --port 4173',env:{VITE_DIRECTORY_DEMO:'false',VITE_DIRECTORY_BACKEND_ENABLED:'true',VITE_SUPABASE_URL:'http://127.0.0.1:54324',VITE_SUPABASE_PUBLISHABLE_KEY:keys.anon,VITE_TURNSTILE_SITE_KEY:'local-controlled-fixture'},port:4173,reuseExistingServer:false},reporter:[['list'],['json',{outputFile:'artifacts/browser-connected-results.json'}]]});

@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'tests/e2e',timeout:30000,use:{baseURL:'http://127.0.0.1:4173',headless:true,reducedMotion:'reduce'},webServer:{command:'VITE_DIRECTORY_DEMO=true VITE_DIRECTORY_BACKEND_ENABLED=true VITE_SUPABASE_URL=http://127.0.0.1:54321 VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_fictional_ui_test_key pnpm dev --host 127.0.0.1 --port 4173',port:4173,reuseExistingServer:false},reporter:[['list'],['json',{outputFile:'artifacts/browser-results.json'}]]});

@@ -257,7 +257,7 @@ const CityPage = () => {
                   },
                   {
                     title: `${cityData.name} Local Search`,
-                    description: `Appear in searches for \"${cityData.name} businesses\" and related queries`
+                    description: `Appear in searches for "${cityData.name} businesses" and related queries`
                   }
                 ].map((benefit, index) => (
                   <motion.div

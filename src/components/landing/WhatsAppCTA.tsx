@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getVariant, logConversion, type Variant } from "@/lib/ab";
 
 const WA_MSG = encodeURIComponent(
-  "Hi KDial team, I am interested in the ₹501 Founder Package pre-booking for the planned November 1, 2026 launch. Could you share the package inclusions, duration and payment terms?"
+  "Hi KDial team, I am enquiring about the Founder Package: ₹501 for the first year and ₹701 at renewal after the first year. The one-year term starts when the listing is published. Renewal is manual and requires a new affirmative payment; there is no automatic renewal or auto-charge. Please confirm the package inclusions and payment terms. I understand KDial is pre-launch and this enquiry does not book a listing or make a payment."
 );
 export const WHATSAPP_URL = `https://wa.me/917356137106?text=${WA_MSG}`;
 
@@ -21,7 +21,7 @@ export const WhatsAppCTA = ({ children, className, ariaLabel }: Props) => {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={ariaLabel ?? "Ask about Founder Package pre-booking on WhatsApp"}
+      aria-label={ariaLabel ?? "Enquire about the Founder Package on WhatsApp"}
       onClick={() => logConversion(variant)}
       className={
         className ??

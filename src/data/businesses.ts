@@ -1,14 +1,7 @@
 /**
- * Approved KDial business listings.
- *
- * This is the single source of truth for:
- *  - /businesses/{slug} pages
- *  - indexation of /{city}/{category} pages (a page is only indexable when it
- *    has at least MIN_LISTINGS_FOR_INDEX approved businesses)
- *  - sitemap entries (see scripts/generate-sitemap.ts)
- *
- * Only add REAL, paid/approved businesses. Never add placeholder or fake data:
- * empty pages stay noindex and stay out of the sitemap by design.
+ * Legacy type helpers. Persistent public listings now come from the server-enforced
+ * kdial_public_listings RPC; this empty legacy array must never be populated with
+ * fictional data. Old discovery routes redirect to the persistent directory.
  */
 
 export interface BusinessHours {
@@ -32,7 +25,7 @@ export interface Business {
   locality?: string;
   address: string;
   pincode?: string;
-  phone: string;
+  phone?: string;
   whatsapp?: string;
   email?: string;
   website?: string;
@@ -48,8 +41,10 @@ export interface Business {
   verified: boolean;
   /** Only `approved` listings are rendered and indexed. */
   status: "approved" | "pending" | "expired";
-  /** ISO date (YYYY-MM-DD) of the last verified content change. */
-  updatedAt: string;
+  /** ISO date (YYYY-MM-DD) of the last verified content change, when supplied. */
+  updatedAt?: string;
+  /** ISO timestamp/date when an admin last verified this listing. */
+  verifiedAt?: string;
   /** Optional SEO overrides — editable per listing. */
   seoTitle?: string;
   seoDescription?: string;

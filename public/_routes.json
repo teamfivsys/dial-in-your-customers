@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "include": [
+    "/sitemap.xml",
+    "/directory",
+    "/business-directory-kochi",
+    "/businesses/*",
+    "/api/sitemap",
+    "/api/directory-route"
+  ],
+  "exclude": []
+}
