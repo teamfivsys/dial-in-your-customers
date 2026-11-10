@@ -33,7 +33,7 @@ const SEO = ({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="KDial — Kerala business directory coming soon. Launch planned 1 November 2026." />
+      <meta property="og:image:alt" content="KDial — Kerala business directory for local shops and services, starting in Kochi." />
       <meta property="og:site_name" content="KDial" />
       <meta property="og:locale" content="en_IN" />
       <meta name="twitter:card" content="summary_large_image" />
