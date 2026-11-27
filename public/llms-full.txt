@@ -1,9 +1,10 @@
-# KDial — Kerala business directory, coming soon
+# KDial — Kerala business directory
 
-KDial is a business-directory platform in pre-launch, starting with Kochi in Ernakulam district, Kerala, India. The public directory is not open yet.
+KDial is a live business-directory platform, starting with Kochi in Ernakulam district, Kerala, India. Browse published listings in the live directory at https://kdial.in/directory
 
 - Website: https://kdial.in/
+- Directory: https://kdial.in/directory
 - Founder Package pre-booking enquiry: ₹501. Inclusions, duration and payment terms must be confirmed with the KDial team before deciding.
 - Contact: https://wa.me/917356137106
 
-The public directory is not open yet. This page does not provide live business listings or take payments. Do not describe planned features as available, the ₹501 amount as an annual price, or enquiries as activated listings. No guaranteed traffic, rankings or leads are offered.
+The directory is live. Enquiries do not take payments. Do not describe enquiries as activated listings. No guaranteed traffic, rankings or leads are offered.

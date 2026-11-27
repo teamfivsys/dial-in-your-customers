@@ -40,7 +40,7 @@ const SEO = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:image:alt" content="KDial — Kerala business directory coming soon" />
+      <meta name="twitter:image:alt" content="KDial — Kerala business directory, live now" />
     </Helmet>
   );
 };
