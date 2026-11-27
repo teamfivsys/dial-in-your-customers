@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Sparkles, PartyPopper, MapPin } from "lucide-react";
+import { Sparkles, PartyPopper, MapPin, ArrowRight, Crown } from "lucide-react";
 
 const STORAGE_KEY = "kdial-launch-at-v1";
 const DURATION_MS = 24 * 60 * 60 * 1000;
@@ -40,50 +40,53 @@ export default function LaunchCountdown() {
   const progress = Math.min(100, Math.max(0, (1 - remaining / DURATION_MS) * 100));
 
   return (
-    <section className="kd-launch-wrap" id="launch-countdown" aria-label="KDial launch countdown">
-      <div className="kd-wrap">
-        <div className="kd-launch-card">
-          <div className="kd-launch-confetti" aria-hidden="true">
-            <span /><span /><span /><span /><span /><span />
-          </div>
-          <p className="kd-launch-pill"><Sparkles size={14} /> The wait is almost over</p>
-          <h2 className="kd-launch-title">
-            Coming online
-            <span> after the wait.</span>
-          </h2>
-          <p className="kd-launch-sub">
-            Kerala&apos;s businesses. A little closer. We open KDial&apos;s doors in
-          </p>
-
-          <div className="kd-launch-timer" role="timer" aria-live="off" aria-label={`${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`}>
-            <div className="kd-launch-unit">
-              <span className="kd-launch-num">{pad(hours)}</span>
-              <span className="kd-launch-label">Hours</span>
-            </div>
-            <span className="kd-launch-colon">:</span>
-            <div className="kd-launch-unit">
-              <span className="kd-launch-num">{pad(minutes)}</span>
-              <span className="kd-launch-label">Minutes</span>
-            </div>
-            <span className="kd-launch-colon">:</span>
-            <div className="kd-launch-unit kd-launch-unit--accent">
-              <span className="kd-launch-num">{pad(seconds)}</span>
-              <span className="kd-launch-label">Seconds</span>
-            </div>
-          </div>
-
-          <div className="kd-launch-progress" aria-hidden="true">
-            <div className="kd-launch-progress-bar" style={{ width: `${progress}%` }} />
-          </div>
-
-          <div className="kd-launch-foot">
-            <span className="kd-launch-live"><PartyPopper size={15} /> Staging preview — nothing live yet</span>
-            <span className="kd-launch-place"><MapPin size={14} /> Kochi first · Kerala next</span>
-          </div>
-
-          <a className="kd-launch-cta" href="#founders">Founder Package ₹501 — still open</a>
-          <small className="kd-launch-note">Real 24-hour timer. Staging only for review — production untouched, no listings published.</small>
+    <section className="kd-launch-wrap kd-launch-wrap--hero" id="launch-countdown" aria-label="KDial launch countdown">
+      <div className="kd-launch-card">
+        <div className="kd-launch-sheen" aria-hidden="true" />
+        <div className="kd-launch-confetti" aria-hidden="true">
+          <span /><span /><span /><span /><span /><span />
         </div>
+        <div className="kd-launch-top">
+          <p className="kd-launch-pill kd-launch-pill--premium"><Sparkles size={14} /> The wait is almost over</p>
+          <p className="kd-launch-kicker"><Crown size={13} /> KDial Kerala · Launching soon</p>
+        </div>
+        <h2 className="kd-launch-title">
+          Coming online
+          <span> after the wait.</span>
+        </h2>
+        <p className="kd-launch-sub">
+          Kerala&apos;s businesses. A little closer. We open KDial&apos;s doors in
+        </p>
+
+        <p className="kd-launch-countlabel" aria-hidden="true">We go live in</p>
+        <div className="kd-launch-timer" role="timer" aria-live="off" aria-label={`${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`}>
+          <div className="kd-launch-unit">
+            <span className="kd-launch-num">{pad(hours)}</span>
+            <span className="kd-launch-label">Hours</span>
+          </div>
+          <span className="kd-launch-colon">:</span>
+          <div className="kd-launch-unit">
+            <span className="kd-launch-num">{pad(minutes)}</span>
+            <span className="kd-launch-label">Minutes</span>
+          </div>
+          <span className="kd-launch-colon">:</span>
+          <div className="kd-launch-unit kd-launch-unit--accent">
+            <span className="kd-launch-num">{pad(seconds)}</span>
+            <span className="kd-launch-label">Seconds</span>
+          </div>
+        </div>
+
+        <div className="kd-launch-progress" aria-hidden="true">
+          <div className="kd-launch-progress-bar" style={{ width: `${progress}%` }} />
+        </div>
+
+        <a className="kd-launch-cta kd-launch-cta--premium" href="#founders">Claim your Founder Package · ₹501 <ArrowRight size={17} /></a>
+
+        <div className="kd-launch-foot">
+          <span className="kd-launch-live"><PartyPopper size={15} /> Celebration countdown — live in 24 hours</span>
+          <span className="kd-launch-place"><MapPin size={14} /> Kochi first · Kerala next</span>
+        </div>
+        <small className="kd-launch-note">Real 24-hour timer · Staging preview only — production untouched, no listings published.</small>
       </div>
     </section>
   );
