@@ -23,6 +23,7 @@ export interface Business {
   citySlug: string;
   /** Human readable locality, e.g. "Panampilly Nagar" */
   locality?: string;
+  district?: string;
   address: string;
   pincode?: string;
   phone?: string;

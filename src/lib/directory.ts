@@ -3,16 +3,17 @@ export interface Listing extends Business { demo?: boolean }
 function normalizeSearch(value: string) {
   return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").trim().toLocaleLowerCase();
 }
-export function filterListings(records: Listing[], filters: {q?: string; category?: string; locality?: string; city?: string; categoryLabels?: Record<string, string>}) {
+export function filterListings(records: Listing[], filters: {q?: string; category?: string; locality?: string; district?: string; city?: string; categoryLabels?: Record<string, string>}) {
   const q = normalizeSearch(filters.q ?? "");
   return records.filter(b => {
     const searchable = normalizeSearch([
-      b.name, b.description, b.locality, b.address, b.categorySlug,
+      b.name, b.description, b.locality, b.district, b.address, b.categorySlug,
       filters.categoryLabels?.[b.categorySlug], ...(b.services ?? []),
     ].filter(Boolean).join(" "));
     return b.status === "approved" && b.citySlug === "kochi" &&
       (!filters.city || b.citySlug === filters.city) &&
       (!filters.category || b.categorySlug === filters.category) &&
+      (!filters.district || normalizeSearch((b as {district?:string}).district ?? "") === normalizeSearch(filters.district)) &&
       (!filters.locality || normalizeSearch(b.locality ?? "") === normalizeSearch(filters.locality)) &&
       (!q || searchable.includes(q));
   });

@@ -19,7 +19,7 @@ export async function directoryBackend(): Promise<SupabaseClient<DirectoryDataba
 }
 const listingSchema = z.array(z.object({
     slug:z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),name:z.string(),categorySlug:z.string(),citySlug:z.literal("kochi"),
-    locality:z.string(),address:z.string(),phone:z.string().nullish().transform(v=>v??undefined),
+    locality:z.string(),district:z.string().optional(),address:z.string(),phone:z.string().nullish().transform(v=>v??undefined),
     whatsapp:z.string().regex(/^\+91[6-9][0-9]{9}$/).nullish().transform(v=>v??undefined),
     website:z.string().url().refine(v=>v.startsWith("https://")).nullish().transform(v=>v??undefined),
     description:z.string(),services:z.array(z.string()),hours:z.array(z.object({days:z.string(),opens:z.string(),closes:z.string()})),
