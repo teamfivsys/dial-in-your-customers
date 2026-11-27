@@ -118,3 +118,30 @@
 
 .kd-hero--premium{background:#eef4fd!important}
 .kd-ed-card:before{background:#f8fbff}
+
+/* Clean simple countdown — flat, single number per unit */
+.kd-clean-card{background:#fff;border:1px solid #dbe7f7;border-radius:16px;padding:22px 24px 20px;color:#0a1730;box-shadow:0 10px 28px #0a17301a;max-width:100%}
+.kd-clean-eyebrow{margin:0 0 14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#155fd4}
+.kd-clean-timer{display:flex;align-items:center;justify-content:center;gap:8px;max-width:100%}
+.kd-clean-unit{display:flex;flex-direction:column;align-items:center;min-width:0;background:#f1f6fd;border:1px solid #dbe7f7;border-radius:12px;padding:12px 10px 10px;flex:1 1 0;max-width:150px}
+.kd-clean-unit--accent{background:#fff0e8;border-color:#f8c3a6}
+.kd-clean-num{display:block;font-size:44px;line-height:1;font-weight:700;color:#0a1730;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+.kd-clean-unit--accent .kd-clean-num{color:#d84f0f}
+.kd-clean-label{display:block;margin-top:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#5d7087}
+.kd-clean-colon{font-size:28px;font-weight:700;color:#f16b2e;flex:0 0 auto;line-height:1}
+.kd-clean-action{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.kd-clean-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#155fd4;color:#fff;text-decoration:none;border-radius:10px;padding:12px 18px;font-weight:600;font-size:14px;min-height:46px;max-width:100%}
+.kd-clean-cta:hover{background:#0a4aad}
+.kd-clean-place{display:inline-flex;align-items:center;gap:6px;margin:0;color:#325273;font-size:12px;font-weight:600}
+@media(max-width:600px){
+  .kd-clean-card{padding:18px 14px 16px;border-radius:14px}
+  .kd-clean-eyebrow{font-size:10px;letter-spacing:.1em;text-align:center}
+  .kd-clean-timer{gap:5px}
+  .kd-clean-unit{padding:10px 4px 8px;border-radius:10px}
+  .kd-clean-num{font-size:32px}
+  .kd-clean-label{font-size:9px;letter-spacing:.12em}
+  .kd-clean-colon{font-size:22px}
+  .kd-clean-action{flex-direction:column;align-items:stretch;gap:10px}
+  .kd-clean-cta{width:100%;font-size:13px;padding:12px 10px}
+  .kd-clean-place{justify-content:center}
+}
