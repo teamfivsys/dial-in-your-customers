@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Sparkles, PartyPopper, MapPin, ArrowRight, Crown } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 const STORAGE_KEY = "kdial-launch-at-v1";
 const DURATION_MS = 24 * 60 * 60 * 1000;
@@ -23,6 +23,29 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
+function FlapDigit({ d, accent }: { d: string; accent?: boolean }) {
+  return (
+    <span className={`kd-flap${accent ? " kd-flap--accent" : ""}`} aria-hidden="true">
+      <span className="kd-flap-half kd-flap-top">{d}</span>
+      <span className="kd-flap-half kd-flap-bottom">{d}</span>
+      <span className="kd-flap-hinge" />
+    </span>
+  );
+}
+
+function FlapUnit({ value, label, accent }: { value: string; label: string; accent?: boolean }) {
+  return (
+    <div className="kd-flap-unit" aria-label={`${value} ${label}`}>
+      <div className="kd-flap-digits">
+        {value.split("").map((d, i) => (
+          <FlapDigit key={i} d={d} accent={accent} />
+        ))}
+      </div>
+      <span className="kd-flap-label">{label}</span>
+    </div>
+  );
+}
+
 export default function LaunchCountdown() {
   const [target] = useState(getLaunchTarget);
   const [remaining, setRemaining] = useState(() => Math.max(0, target - Date.now()));
@@ -38,55 +61,45 @@ export default function LaunchCountdown() {
   const minutes = Math.floor((remaining % 3600000) / 60000);
   const seconds = Math.floor((remaining % 60000) / 1000);
   const progress = Math.min(100, Math.max(0, (1 - remaining / DURATION_MS) * 100));
+  const filledSegments = Math.round((progress / 100) * 24);
 
   return (
-    <section className="kd-launch-wrap kd-launch-wrap--hero" id="launch-countdown" aria-label="KDial launch countdown">
-      <div className="kd-launch-card">
-        <div className="kd-launch-sheen" aria-hidden="true" />
-        <div className="kd-launch-confetti" aria-hidden="true">
-          <span /><span /><span /><span /><span /><span />
+    <section className="kd-launch-wrap kd-launch-wrap--hero kd-ed" id="launch-countdown" aria-label="KDial launch countdown">
+      <div className="kd-ed-card">
+        <div className="kd-ed-top">
+          <p className="kd-ed-brand">KDial Kerala</p>
+          <p className="kd-ed-tag">The wait is almost over</p>
         </div>
-        <div className="kd-launch-top">
-          <p className="kd-launch-pill kd-launch-pill--premium"><Sparkles size={14} /> The wait is almost over</p>
-          <p className="kd-launch-kicker"><Crown size={13} /> KDial Kerala · Launching soon</p>
-        </div>
-        <h2 className="kd-launch-title">
+
+        <h2 className="kd-ed-title">
           Coming online
           <span> after the wait.</span>
         </h2>
-        <p className="kd-launch-sub">
-          Kerala&apos;s businesses. A little closer. We open KDial&apos;s doors in
-        </p>
 
-        <p className="kd-launch-countlabel" aria-hidden="true">We go live in</p>
-        <div className="kd-launch-timer" role="timer" aria-live="off" aria-label={`${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`}>
-          <div className="kd-launch-unit">
-            <span className="kd-launch-num">{pad(hours)}</span>
-            <span className="kd-launch-label">Hours</span>
-          </div>
-          <span className="kd-launch-colon">:</span>
-          <div className="kd-launch-unit">
-            <span className="kd-launch-num">{pad(minutes)}</span>
-            <span className="kd-launch-label">Minutes</span>
-          </div>
-          <span className="kd-launch-colon">:</span>
-          <div className="kd-launch-unit kd-launch-unit--accent">
-            <span className="kd-launch-num">{pad(seconds)}</span>
-            <span className="kd-launch-label">Seconds</span>
-          </div>
+        <div className="kd-ed-rule" aria-hidden="true"><span /></div>
+
+        <p className="kd-ed-sub">Kerala&apos;s businesses. A little closer. We open KDial&apos;s doors in</p>
+
+        <div className="kd-ed-timer" role="timer" aria-live="off" aria-label={`${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`}>
+          <FlapUnit value={pad(hours)} label="Hours" />
+          <span className="kd-ed-colon" aria-hidden="true">:</span>
+          <FlapUnit value={pad(minutes)} label="Minutes" />
+          <span className="kd-ed-colon" aria-hidden="true">:</span>
+          <FlapUnit value={pad(seconds)} label="Seconds" accent />
         </div>
 
-        <div className="kd-launch-progress" aria-hidden="true">
-          <div className="kd-launch-progress-bar" style={{ width: `${progress}%` }} />
+        <div className="kd-ed-segments" aria-hidden="true">
+          {Array.from({ length: 24 }, (_, i) => (
+            <span key={i} className={i < filledSegments ? "is-on" : ""} />
+          ))}
         </div>
 
-        <a className="kd-launch-cta kd-launch-cta--premium" href="#founders">Claim your Founder Package · ₹501 <ArrowRight size={17} /></a>
-
-        <div className="kd-launch-foot">
-          <span className="kd-launch-live"><PartyPopper size={15} /> Celebration countdown — live in 24 hours</span>
-          <span className="kd-launch-place"><MapPin size={14} /> Kochi first · Kerala next</span>
+        <div className="kd-ed-action">
+          <a className="kd-ed-cta" href="#founders">Claim your Founder Package · ₹501 <ArrowRight size={17} /></a>
+          <p className="kd-ed-place"><MapPin size={13} /> Kochi first · Kerala next</p>
         </div>
-        <small className="kd-launch-note">Real 24-hour timer · Staging preview only — production untouched, no listings published.</small>
+
+        <p className="kd-ed-note">Real 24-hour timer · Staging preview only — production untouched, no listings published.</p>
       </div>
     </section>
   );
