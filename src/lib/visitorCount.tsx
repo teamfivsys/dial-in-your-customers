@@ -12,7 +12,9 @@ async function callVisitRpc(fn: "record_visit" | "get_visit_count"): Promise<num
   if (import.meta.env.VITE_DIRECTORY_API_MODE === "hostinger-mysql") return null;
   try {
     const { supabase } = await import("@/integrations/supabase/client");
-    const { data, error } = await supabase.rpc(fn);
+    // Generated Database types do not list these RPCs, so the typed client
+    // constrains rpc() to `never`; cast through to call them untyped.
+    const { data, error } = await supabase.rpc(fn as never);
     if (error) return null;
     return typeof data === "number" ? data : null;
   } catch {
