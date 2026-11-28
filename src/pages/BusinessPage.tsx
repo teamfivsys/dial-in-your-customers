@@ -5,7 +5,7 @@ import SEO from "@/components/seo/SEO";
 import StructuredData from "@/components/seo/StructuredData";
 import { SiteFooter } from "./Index";
 import { useListings } from "@/hooks/use-listings";
-import { DEMO_ENABLED, directoryPath, callHref, whatsappHref, verificationLabel } from "@/lib/directory";
+import { DEMO_ENABLED, directoryPath, callHref, whatsappHref, verificationLabel, profilePath } from "@/lib/directory";
 import { useDirectoryTaxonomy } from "@/hooks/use-directory-taxonomy";
 import DemoNotice from "@/components/directory/DemoNotice";
 import NotFound from "./NotFound";
