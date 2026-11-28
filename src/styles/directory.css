@@ -84,3 +84,41 @@
 @media(max-width:900px){.kd-profile-hero{grid-template-columns:1fr;gap:16px}.kd-profile-hero-media img{height:210px}.kd-profile-hero-media{min-height:0}.kd-profile-initials{height:210px;font-size:56px}}
 @media(max-width:640px){.kd-profile-hero{padding:12px;border-radius:14px}.kd-profile-hero-media img{height:190px}.kd-profile-initials{height:190px}.kd-profile-actions a{flex:1 1 100%;justify-content:center}.kd-profile-panel{padding:16px}.kd-directory-page .kd-card-actions a{flex:1 1 100%;justify-content:center}.kd-directory-page .kd-card-actions a[aria-label^="Call"],.kd-directory-page .kd-card-actions a[aria-label^="WhatsApp"]{flex:1 1 calc(50% - 6px)}}
 @media(prefers-reduced-motion:reduce){.kd-profile-hero,.kd-profile-panel{transition:none}}
+
+/* Compact directory card — kill dead space (28 Nov, Felix screenshot A955582).
+   Root causes fixed: clamp selector missed nested <p>, margin-top:auto + 22px action gap. */
+.kd-directory-page .kd-business-grid{gap:14px;margin-top:18px}
+.kd-directory-page .kd-business-grid .kd-business{display:grid;grid-template-columns:88px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;row-gap:0;padding:16px;align-items:start;border-radius:14px}
+.kd-directory-page .kd-card-media{width:88px;height:88px;border-radius:10px;align-self:start;flex:none}
+.kd-directory-page .kd-card-media .kd-card-image{width:100%;height:100%;object-fit:contain}
+.kd-card-initials{font-size:30px}
+.kd-directory-page .kd-card-body{min-width:0;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+.kd-directory-page .kd-card-meta{gap:6px 8px;font-size:12px;min-height:0}
+.kd-directory-page .kd-business-grid .kd-business h3{font-size:19px;line-height:1.25;margin:0;letter-spacing:-.3px}
+.kd-directory-page .kd-business-grid .kd-card-body>p{margin:0;font-size:13.5px;line-height:1.55;color:#445d7d;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.kd-directory-page .kd-card-address{display:flex;gap:5px;align-items:flex-start;font-size:12px;line-height:1.5;color:#5b728f;margin:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.kd-directory-page .kd-card-address svg{flex:0 0 auto;margin-top:1px}
+.kd-directory-page .kd-card-actions{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;justify-content:stretch;align-self:stretch;margin:12px 0 0;width:100%;grid-column:1/-1}
+.kd-directory-page .kd-card-actions a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;height:44px;padding:0 14px;border-radius:10px;font-size:13.5px;font-weight:700;text-decoration:none}
+.kd-directory-page .kd-card-actions .kd-action-primary{flex:1 1 100%}
+.kd-directory-page .kd-card-actions a[aria-label^="Call"],.kd-directory-page .kd-card-actions a[aria-label^="WhatsApp"]{flex:1 1 calc(50% - 5px)}
+.kd-directory-page .kd-category{margin:0}
+@media(min-width:901px){
+  .kd-directory-page .kd-business-grid .kd-business{grid-template-columns:96px minmax(0,1fr) 184px;column-gap:16px;padding:16px 20px}
+  .kd-directory-page .kd-card-media{width:96px;height:96px}
+  .kd-directory-page .kd-card-actions{flex-direction:column;flex-wrap:nowrap;gap:8px;grid-column:auto;margin:2px 0 0;width:184px}
+  .kd-directory-page .kd-card-actions .kd-action-primary{flex:0 0 auto;width:100%}
+  .kd-directory-page .kd-card-actions a[aria-label^="Call"],.kd-directory-page .kd-card-actions a[aria-label^="WhatsApp"]{flex:0 0 auto;width:100%}
+  .kd-directory-page .kd-business-grid .kd-business h3{font-size:21px}
+  .kd-directory-page .kd-business-grid .kd-card-body>p{font-size:14px}
+}
+@media(max-width:640px){
+  .kd-directory-page .kd-business-grid .kd-business{grid-template-columns:80px minmax(0,1fr);column-gap:12px;padding:14px}
+  .kd-directory-page .kd-card-media{width:80px;height:80px}
+  .kd-card-initials{font-size:26px}
+  .kd-directory-page .kd-business-grid .kd-business h3{font-size:18px}
+  .kd-directory-page .kd-business-grid .kd-card-body>p{font-size:13px}
+  .kd-directory-page .kd-card-actions{margin-top:12px;gap:8px}
+  .kd-directory-page .kd-card-actions a{font-size:13px}
+  .kd-directory-page .kd-card-actions a[aria-label^="Call"],.kd-directory-page .kd-card-actions a[aria-label^="WhatsApp"]{flex-basis:calc(50% - 4px)}
+}
