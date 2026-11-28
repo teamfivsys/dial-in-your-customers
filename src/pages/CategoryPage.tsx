@@ -1,4 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
+import { shortCandidate } from "@/lib/slugs";
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Building, CheckCircle, ArrowRight } from 'lucide-react';
 import Header from '@/components/landing/Header';
@@ -244,7 +245,7 @@ const CategoryPage = () => {
                   <ul className="grid gap-4 sm:grid-cols-2">
                     {listings.map((b) => (
                       <li key={b.slug} className="rounded-2xl border border-border bg-card p-5">
-                        <Link to={`/businesses/${b.slug}`} className="font-bold hover:text-primary">
+                        <Link to={`/${shortCandidate(b.slug)}`} className="font-bold hover:text-primary">
                           {b.name}
                         </Link>
                         <p className="mt-1 text-sm text-muted-foreground">

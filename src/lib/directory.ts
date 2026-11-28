@@ -1,4 +1,6 @@
 import type { Business } from "../data/businesses";
+import { businessPath } from "./slugs";
+export { shortCandidate, buildShortMap, shortSlugFor, canonicalBusinessUrl } from "./slugs";
 export interface Listing extends Business { demo?: boolean }
 function normalizeSearch(value: string) {
   return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").trim().toLocaleLowerCase();
@@ -39,4 +41,4 @@ export function whatsappHref(value?: string) {
 }
 export const DEMO_ENABLED = import.meta.env?.DEV || import.meta.env?.VITE_DIRECTORY_DEMO === "true";
 export function directoryPath(demo: boolean) { return demo ? "/demo/directory" : "/directory"; }
-export function profilePath(slug: string, demo: boolean) { return `${demo ? "/demo" : ""}/businesses/${encodeURIComponent(slug)}`; }
+export function profilePath(slug: string, demo: boolean, shortMap?: Map<string, string>) { return businessPath(slug, demo, shortMap); }

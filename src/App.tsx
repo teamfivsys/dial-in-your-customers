@@ -47,7 +47,9 @@ const App = () => (
               <Route path="/categories/:category" element={<LegacyDirectoryRoute />} />
               <Route path="/businesses/:slug" element={<BusinessPage />} />
               <Route path="/:city/:category" element={<LegacyDirectoryRoute />} />
-              <Route path="/:city" element={<LegacyDirectoryRoute />} />
+              {/* Single-segment short business profiles: /<short-slug> (e.g. /element-builders).
+                  Legacy /:city names are handled inside BusinessPage fallback. */}
+              <Route path="/:slug" element={<BusinessPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

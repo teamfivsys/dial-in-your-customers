@@ -4,6 +4,8 @@
  * fictional data. Old discovery routes redirect to the persistent directory.
  */
 
+import { shortCandidate } from "../lib/slugs";
+
 export interface BusinessHours {
   /** e.g. "Mo-Sa" or "Su" */
   days: string;
@@ -93,5 +95,5 @@ export const businessSeo = (b: Business, cityName: string, categoryName: string)
   description:
     b.seoDescription ??
     `${b.name} is a verified ${categoryName.toLowerCase()} in ${cityName}, Kerala. Address, phone, WhatsApp, opening hours and services on KDial.`,
-  canonical: b.canonicalOverride ?? `https://kdial.in/businesses/${b.slug}`,
+  canonical: b.canonicalOverride ?? `https://kdial.in/${shortCandidate(b.slug)}`,
 });

@@ -1,4 +1,5 @@
 import { useParams, Navigate, Link } from "react-router-dom";
+import { shortCandidate } from "@/lib/slugs";
 import { MapPin, CheckCircle2, ArrowRight, Building2 } from "lucide-react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
@@ -164,7 +165,7 @@ const BusinessDirectoryLocation = () => {
               <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                 {listings.map((b) => (
                   <li key={b.slug} className="rounded-2xl border border-border bg-card p-5">
-                    <Link to={`/businesses/${b.slug}`} className="font-bold text-foreground hover:text-[#1E6FFF]">
+                    <Link to={`/${shortCandidate(b.slug)}`} className="font-bold text-foreground hover:text-[#1E6FFF]">
                       {b.name}
                     </Link>
                     <p className="mt-1 text-sm text-muted-foreground">{b.locality ?? loc.name}</p>

@@ -144,3 +144,9 @@
 .kd-profile-premium-pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 14px;border-radius:999px;border:1px solid #f5b14e;background:#fff4e0;color:#8a5300;font-size:13px;font-weight:800;line-height:1}
 .kd-profile-premium-pill svg{width:16px;height:16px;color:#e8860d;fill:#ffd25e}
 .kd-profile-premium-note{font-size:11px;color:#7a8CA3;color:#7a8ca3;line-height:1.5}
+
+/* Share button on detail pages (28 Nov) — matches existing profile action anchors */
+.kd-profile-actions button.kd-share-btn{min-height:46px;display:inline-flex;align-items:center;gap:8px;padding:0 18px;font-weight:700;font-size:14px;border-radius:10px;cursor:pointer;background:#fff;color:#155fd4;border:1px solid #b9d2f0;font-family:inherit}
+.kd-profile-actions button.kd-share-btn:hover{background:#eef5ff}
+.kd-share-copied{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:#155fd4;background:#eef6ff;border:1px solid #d6e8fb;border-radius:999px;padding:6px 12px}
+@media(max-width:640px){.kd-profile-actions button.kd-share-btn{flex:1 1 100%;justify-content:center}}

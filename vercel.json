@@ -38,6 +38,10 @@
     {
       "source": "/404",
       "destination": "/index.html"
+    },
+    {
+      "source": "/:slug",
+      "destination": "/api/directory-route?kdial_path=/:slug"
     }
   ],
   "functions": {
