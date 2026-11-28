@@ -145,3 +145,69 @@
   .kd-clean-cta{width:100%;font-size:13px;padding:12px 10px}
   .kd-clean-place{justify-content:center}
 }
+
+/* Energy upgrade 28 Nov — warmer, bolder, positive typography. Brand blue/white/orange, Poppins, no yellow. */
+.kd-hero--premium{background:#fff9f2!important;background-image:radial-gradient(#ffdcc7 1px,transparent 1px);background-size:26px 26px;border-bottom:1px solid #fbe3d2}
+.kd-hero--premium .kd-hero-inner{padding-top:58px;padding-bottom:54px;gap:36px}
+.kd-hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.kd-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #f3d5be;color:#8a5530;font-size:12px;font-weight:600;border-radius:999px;padding:8px 14px;box-shadow:0 4px 14px #f274360f}
+.kd-badge-live{background:#155fd4;border-color:#155fd4;color:#fff;box-shadow:0 6px 18px #155fd433}
+.kd-live-dot{width:8px;height:8px;border-radius:50%;background:#7dffa8;box-shadow:0 0 0 3px #ffffff2b}
+.kd-hero--premium .kd-eyebrow{display:inline-flex;align-items:center;background:#fff;border:1px solid #fbe3d2;color:#b45a24;font-size:11px;font-weight:700;letter-spacing:.18em;padding:9px 14px;border-radius:999px;box-shadow:0 4px 14px #f274360f;margin-bottom:22px}
+.kd-hero--premium .kd-eyebrow>span{width:8px;height:8px;background:#f27436;box-shadow:0 0 0 4px #f2743622;margin-right:10px}
+.kd-hero--premium h1{font-size:76px;line-height:1.02;font-weight:700;letter-spacing:-3.8px;margin-bottom:24px}
+.kd-hero--premium h1 em{font-style:italic;font-weight:700;color:#155fd4}
+.kd-hero--premium h1 em:after{height:8px;bottom:-12px;left:-4px;right:-2px;background:#f27436;border-radius:999px;transform:rotate(-1.5deg)}
+.kd-hero--premium .kd-intro{font-size:17px;line-height:1.75;color:#3e5878;max-width:520px;margin-bottom:26px;font-weight:500}
+.kd-prelaunch-actions{gap:14px;margin:30px 0 22px}
+.kd-prelaunch-actions .kd-button{padding:18px 32px;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 14px 32px #155fd438;min-height:56px}
+.kd-prelaunch-actions .kd-button:hover{transform:translateY(-2px);box-shadow:0 18px 38px #155fd44a}
+.kd-prelaunch-actions .kd-text-link{background:#fff0e8;border:1px solid #ffd3b8;color:#c4520f;font-size:13px;font-weight:700;padding:16px 22px;border-radius:999px;text-decoration:none}
+.kd-prelaunch-actions .kd-text-link:hover{background:#ffe3d0;color:#b34408}
+.kd-hero--premium .kd-search{border-radius:20px;border:1.5px solid #e9eef6;padding:12px;box-shadow:0 22px 46px #123b7314;gap:10px}
+.kd-hero--premium .kd-search-field{padding:0 18px}
+.kd-hero--premium .kd-search input{height:52px;font-size:15px}
+.kd-hero--premium .kd-search-city{width:220px}
+.kd-hero--premium .kd-search .kd-button{border-radius:12px;min-height:52px;font-size:14px;font-weight:700;padding:14px 26px}
+.kd-hero--premium .kd-art{height:360px;margin-top:10px}
+.kd-hero--premium .kd-pin{width:124px;height:124px;border-radius:34px;box-shadow:12px 18px 0 #dbe9fb, 0 24px 44px #155fd43d}
+.kd-hero--premium .kd-art-label{border-radius:16px;padding:18px 22px;font-size:12.5px;font-weight:600;box-shadow:0 16px 38px #244f8c18}
+.kd-energy-steps{background:#fff9f2!important}
+.kd-energy-steps .kd-steps>div{background:#fff;border:1px solid #fbe3d2;border-radius:18px;padding:26px;box-shadow:0 10px 28px #f274360d}
+.kd-energy-steps .kd-steps>div>span{font-size:16px;font-weight:700;letter-spacing:.06em}
+.kd-energy-steps .kd-steps h3{font-size:18px}
+.kd-energy-founder{padding-top:72px;padding-bottom:72px}
+.kd-founder-energy{background:#0f3a74!important;border-radius:26px;padding:52px;box-shadow:0 30px 70px #0f3a7433}
+.kd-founder-energy:before{content:'';position:absolute;inset:0;background:radial-gradient(at 85% 10%,#f2743633 0,transparent 46%),radial-gradient(at 10% 90%,#3d8bff26 0,transparent 50%);pointer-events:none}
+.kd-founder-energy>*{position:relative}
+.kd-founder-energy .kd-founder-copy h2{font-size:40px;line-height:1.15;letter-spacing:-1.5px}
+.kd-founder-energy .kd-founder-copy>p:not(.kd-eyebrow){font-size:15px;color:#cfe0f5;max-width:420px}
+.kd-founder-energy .kd-price-card{border-radius:20px;padding:36px;box-shadow:0 24px 54px #00000033}
+.kd-founder-energy .kd-price{font-size:68px;font-weight:700;letter-spacing:-3px}
+.kd-founder-energy .kd-price-card .kd-button{border-radius:999px;padding:17px 24px;font-size:14px;font-weight:700;min-height:54px}
+.kd-faq h2{font-size:38px;letter-spacing:-1.4px;line-height:1.2}
+.kd-site h2{font-weight:700}
+@media(max-width:800px){
+  .kd-hero--premium h1{font-size:56px;letter-spacing:-2.8px}
+  .kd-hero--premium .kd-art{height:300px}
+  .kd-founder-energy{padding:36px}
+}
+@media(max-width:600px){
+  .kd-hero--premium .kd-hero-inner{padding-top:30px;padding-bottom:36px}
+  .kd-hero--premium h1{font-size:52px;letter-spacing:-2.6px;line-height:1.05}
+  .kd-hero--premium .kd-intro{font-size:14.5px;line-height:1.75;max-width:none}
+  .kd-hero-badges{gap:8px}
+  .kd-badge{font-size:11px;padding:7px 12px}
+  .kd-prelaunch-actions{margin-top:24px}
+  .kd-prelaunch-actions .kd-button{width:100%;font-size:15px}
+  .kd-prelaunch-actions .kd-text-link{width:100%;justify-content:center}
+  .kd-hero--premium .kd-search{border-radius:18px;padding:10px}
+  .kd-hero--premium .kd-search input{height:48px;font-size:14px}
+  .kd-hero--premium .kd-search .kd-button{min-height:48px}
+  .kd-hero--premium .kd-art{height:230px;margin-top:22px}
+  .kd-founder-energy{padding:28px 22px;border-radius:20px}
+  .kd-founder-energy .kd-founder-copy h2{font-size:32px}
+  .kd-founder-energy .kd-price{font-size:56px}
+  .kd-faq h2{font-size:30px}
+  .kd-energy-steps .kd-steps>div{padding:20px}
+}
