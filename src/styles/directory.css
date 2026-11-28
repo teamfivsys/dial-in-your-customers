@@ -15,3 +15,37 @@
 @media(max-width:850px){.kd-submit-grid{grid-template-columns:minmax(0,1fr)}}
 
 .kd-card-verified{display:block;color:#526980;font-size:11px;margin-top:8px}.kd-verification-unknown{display:flex;gap:8px;color:#775b27;font-size:12px;margin-top:14px}
+
+/* Listing UI redesign — JustDial/Sulekha-inspired placement: thumb left, details middle, actions right.
+   Keeps KDial blue/white/orange + Poppins. Photos keep object-fit:contain (e731d88). No invented ratings/hours. */
+.kd-directory-page .kd-business-grid{display:flex;flex-direction:column;gap:18px;margin-top:22px}
+.kd-directory-page .kd-business-grid .kd-business{display:grid;grid-template-columns:168px minmax(0,1fr) 152px;gap:20px;align-items:stretch;background:#fff;border:1px solid #dbe6f2;border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(18,59,115,.05);transition:box-shadow .2s,border-color .2s,transform .2s}
+.kd-directory-page .kd-business-grid .kd-business:hover{box-shadow:0 10px 28px rgba(18,59,115,.10);border-color:#9fc0e8;transform:translateY(-1px)}
+.kd-directory-page .kd-card-media{width:168px;height:128px;border-radius:12px;overflow:hidden;background:#fff;border:1px solid #e4edf7;display:flex;align-items:center;justify-content:center;align-self:start}
+.kd-directory-page .kd-card-media .kd-card-image{width:100%;height:100%;object-fit:contain;background:#fff;border-radius:0;margin:0;float:none}
+.kd-card-initials{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font:700 38px/1 Poppins,system-ui,sans-serif;letter-spacing:.02em;color:#155fd4;background:linear-gradient(160deg,#eaf2ff 0%,#f7fbff 58%,#fff1e8 100%)}
+.kd-directory-page .kd-card-body{min-width:0;display:flex;flex-direction:column}
+.kd-directory-page .kd-card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-size:12px;color:#46627f}
+.kd-directory-page .kd-card-place{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:#334f6e}
+.kd-directory-page .kd-card-category{display:inline-flex;align-items:center;background:#eaf2ff;color:#155fd4;border:1px solid #cfe2fb;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.01em}
+.kd-directory-page .kd-card-verified{display:inline-flex;align-items:center;gap:5px;margin:0;background:#eef6ff;color:#155fd4;border:1px solid #d6e8fb;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:600}
+.kd-directory-page .kd-business-grid .kd-business h3{font-size:22px;line-height:1.25;margin:8px 0 6px;letter-spacing:-.4px}
+.kd-directory-page .kd-business-grid .kd-business>p{margin:0 0 10px;font-size:14px;line-height:1.65;color:#445d7d;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.kd-directory-page .kd-card-address{display:flex;gap:6px;align-items:flex-start;font-size:12.5px;line-height:1.6;color:#5b728f;margin-top:auto}
+.kd-directory-page .kd-card-address svg{flex:0 0 auto;margin-top:2px}
+.kd-directory-page .kd-card-actions{display:flex;flex-direction:column;gap:10px;justify-content:center;align-self:center;margin:0;width:152px}
+.kd-directory-page .kd-card-actions a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:700;text-decoration:none}
+.kd-directory-page .kd-action-primary{background:#155fd4;color:#fff;border:1px solid #155fd4}
+.kd-directory-page .kd-action-primary:hover{background:#0f4fab}
+.kd-directory-page .kd-action{background:#fff;color:#155fd4;border:1px solid #b9d2f0}
+.kd-directory-page .kd-action:hover{background:#eef5ff;border-color:#155fd4}
+.kd-directory-page .kd-card-actions a:focus-visible,.kd-directory-page .kd-business-grid .kd-business a:focus-visible{outline:2px solid #ee6b2d;outline-offset:2px}
+/* Detail polish — same language: framed hero image, cleaner panels */
+.kd-profile-photos{background:#fff;border:1px solid #dbe6f2;border-radius:16px;padding:12px;box-shadow:0 4px 14px rgba(18,59,115,.05)}
+.kd-profile-photos img{border:1px solid #e4edf7}
+.kd-profile-panel{background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(18,59,115,.04)}
+/* Filters as a quiet card */
+.kd-directory-page .kd-filters{background:#fff;border:1px solid #e1ebf6;border-radius:12px;padding:18px}
+@media(max-width:900px){.kd-directory-page .kd-business-grid .kd-business{grid-template-columns:132px minmax(0,1fr)} .kd-directory-page .kd-card-media{width:132px;height:112px} .kd-directory-page .kd-card-actions{grid-column:1/-1;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;align-self:auto} .kd-directory-page .kd-card-actions a{flex:1 1 auto}}
+@media(max-width:640px){.kd-directory-page .kd-business-grid .kd-business{grid-template-columns:104px minmax(0,1fr);gap:12px;padding:14px} .kd-directory-page .kd-card-media{width:104px;height:104px} .kd-card-initials{font-size:28px} .kd-directory-page .kd-business-grid .kd-business h3{font-size:19px} .kd-directory-page .kd-card-actions{gap:8px} .kd-directory-page .kd-card-actions a{min-height:44px;font-size:12.5px;padding:0 10px}}
+@media(prefers-reduced-motion:reduce){.kd-directory-page .kd-business-grid .kd-business{transition:none} .kd-directory-page .kd-business-grid .kd-business:hover{transform:none}}
