@@ -211,3 +211,39 @@
   .kd-faq h2{font-size:30px}
   .kd-energy-steps .kd-steps>div{padding:20px}
 }
+
+/* Minimal hero + perfect alignment + floating WhatsApp (28 Nov) — Felix request. */
+.kd-hero--premium .kd-hero-inner{grid-template-columns:1fr;max-width:760px;margin:0 auto;padding-top:56px;padding-bottom:52px;gap:0}
+.kd-hero-copy{max-width:760px;margin:0 auto;text-align:left;width:100%}
+.kd-hero-copy .kd-hero-badges{margin-bottom:20px}
+.kd-hero-copy h1{margin-top:0;margin-bottom:18px}
+.kd-hero-copy .kd-intro{max-width:560px;margin-bottom:26px}
+.kd-hero-copy .kd-prelaunch-actions{margin-top:0;margin-bottom:22px}
+.kd-hero-copy .kd-search{width:100%;max-width:100%;box-sizing:border-box}
+.kd-search{min-width:0}
+.kd-search-field{min-width:0;flex:1 1 0}
+.kd-search-field input{min-width:0;width:100%}
+.kd-search-city{min-width:0}
+.kd-search-city select{min-width:0;width:100%}
+.kd-search .kd-button{flex:0 0 auto;white-space:nowrap}
+.kd-site{overflow-x:clip}
+.kd-steps>div{position:static;padding-left:26px}
+.kd-steps>div>span{position:static!important;display:inline-block;margin:0 12px 0 0;vertical-align:baseline}
+.kd-steps h3{display:inline!important;vertical-align:baseline;margin:0}
+.kd-steps p{margin-top:10px}
+.kd-energy-steps .kd-steps>div{padding:26px}
+.kd-energy-steps .kd-steps>div>span{display:inline-block;margin:0 12px 0 0}
+.kd-energy-steps .kd-steps h3{display:inline}
+.kd-wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:80;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px #25d36655,0 4px 12px #00000022;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.kd-wa-float:hover{transform:scale(1.07);box-shadow:0 16px 36px #25d36666}
+.kd-wa-float:focus-visible{outline:3px solid #155fd4;outline-offset:3px}
+.kd-wa-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:600px){
+  .kd-hero--premium .kd-hero-inner{max-width:none}
+  .kd-hero-copy{max-width:none}
+  .kd-hero-copy .kd-search{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:8px}
+  .kd-hero-copy .kd-search-field{grid-column:1/-1;min-width:0}
+  .kd-hero-copy .kd-search-city{width:100%;min-width:0}
+  .kd-hero-copy .kd-search .kd-button{width:100%;min-width:0;justify-content:center}
+  .kd-wa-float{right:16px;width:54px;height:54px}
+}
