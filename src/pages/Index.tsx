@@ -18,6 +18,7 @@ function FloatingWhatsApp() {
 }
 import { businessCategories } from "@/data/categories";
 import { useListings } from "@/hooks/use-listings";
+import { VisitorCount } from "@/lib/visitorCount";
 
 export function DiscoverForm({ initialQuery = "" }: {initialQuery?: string; initialCity?: string}) {
   const [query, setQuery] = useState(initialQuery);
@@ -30,7 +31,7 @@ export function DiscoverForm({ initialQuery = "" }: {initialQuery?: string; init
   </form>;
 }
 export function SiteFooter() {
-  return <footer className="kd-footer"><div className="kd-wrap"><div className="kd-footer-top"><a href="/" className="kd-wordmark">k<span>dial</span><i>.</i></a><p>Kerala's businesses. A little closer.</p><a href={WHATSAPP_URL} onClick={() => trackFounderEnquiry("footer")}  target="_blank" rel="noopener noreferrer">Talk to KDial <ArrowUpRight size={16}/></a></div><div className="kd-footer-bottom"><span>© {new Date().getFullYear()} KDial</span><span>Built for Kerala, starting with Kochi.</span><span>Live directory · Kochi first, Kerala next</span></div></div></footer>;
+  return <footer className="kd-footer"><div className="kd-wrap"><div className="kd-footer-top"><a href="/" className="kd-wordmark">k<span>dial</span><i>.</i></a><p>Kerala's businesses. A little closer.</p><a href={WHATSAPP_URL} onClick={() => trackFounderEnquiry("footer")}  target="_blank" rel="noopener noreferrer">Talk to KDial <ArrowUpRight size={16}/></a></div><div className="kd-footer-bottom"><span>© {new Date().getFullYear()} KDial</span><span>Built for Kerala, starting with Kochi.</span><span>Live directory · Kochi first, Kerala next<VisitorCount/></span></div></div></footer>;
 }
 export default function Index() {
   const { records } = useListings(false);
