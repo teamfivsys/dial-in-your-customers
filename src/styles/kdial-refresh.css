@@ -247,3 +247,5 @@
   .kd-hero-copy .kd-search .kd-button{width:100%;min-width:0;justify-content:center}
   .kd-wa-float{right:16px;width:54px;height:54px}
 }
+
+.kd-related{padding-bottom:56px}.kd-related h2{font-size:26px;letter-spacing:-.8px;margin-bottom:18px}.kd-related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kd-related-card{border:1px solid #dce5f0;border-radius:10px;padding:16px 18px;display:block;color:#173758}.kd-related-card strong{display:block;font-size:14px;margin-bottom:6px}.kd-related-card span{font-size:12px;color:#6d819a}@media(max-width:800px){.kd-related-grid{grid-template-columns:1fr 1fr}}
