@@ -249,3 +249,20 @@
 }
 
 .kd-related{padding-bottom:56px}.kd-related h2{font-size:26px;letter-spacing:-.8px;margin-bottom:18px}.kd-related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kd-related-card{border:1px solid #dce5f0;border-radius:10px;padding:16px 18px;display:block;color:#173758}.kd-related-card strong{display:block;font-size:14px;margin-bottom:6px}.kd-related-card span{font-size:12px;color:#6d819a}@media(max-width:800px){.kd-related-grid{grid-template-columns:1fr 1fr}}
+
+/* Compact Get listed card — owner request 28 Nov 2026: smaller, compact, more clickable, centre of attention */
+.kd-site .kd-energy-founder .kd-price-card{display:flex;flex-direction:column;padding:20px 22px 18px;border-radius:18px;box-shadow:0 18px 42px #0000002e}
+.kd-site .kd-energy-founder .kd-price-label{font-size:9px;letter-spacing:.14em}
+.kd-site .kd-energy-founder .kd-price{font-size:30px;line-height:1.15;letter-spacing:-1px;font-weight:700;margin:8px 0 14px;white-space:nowrap}
+.kd-site .kd-energy-founder .kd-price span{font-size:15px;font-weight:500;letter-spacing:0;margin-left:8px;color:#5a7291}
+.kd-site .kd-energy-founder .kd-price-card .kd-button{width:100%;min-height:60px;padding:16px 22px;font-size:16px;font-weight:700;border-radius:999px;justify-content:space-between;box-shadow:0 10px 24px #ed682b40}
+.kd-site .kd-energy-founder .kd-price-card .kd-button:hover{box-shadow:0 14px 30px #ed682b55}
+.kd-site .kd-energy-founder .kd-price-card small{font-size:11px;line-height:1.5;margin-top:12px;color:#6a809a}
+.kd-site .kd-energy-founder{padding-top:48px;padding-bottom:48px}
+@media(max-width:600px){
+  .kd-site .kd-energy-founder .kd-price-card{padding:18px 18px 16px;border-radius:16px}
+  .kd-site .kd-energy-founder .kd-price{font-size:28px;letter-spacing:-.8px}
+  .kd-site .kd-energy-founder .kd-price span{font-size:14px;margin-left:6px}
+  .kd-site .kd-energy-founder .kd-price-card .kd-button{min-height:58px;font-size:16px}
+  .kd-site .kd-energy-founder{padding-top:36px;padding-bottom:36px}
+}
