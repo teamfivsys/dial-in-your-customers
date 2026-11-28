@@ -27,7 +27,7 @@ export function contactPhone(value?: string) {
 export function verificationLabel(verified: boolean, verifiedAt?: string) {
   if (!verified) return "Business details have not been verified";
   const date = verifiedAt?.slice(0, 10);
-  return date ? `Business details verified · last checked ${date}` : "Business details verified · check date unavailable";
+  return date ? `Business details verified · last checked ${date}` : "Business details verified";
 }
 export function callHref(value?: string) {
   const phone = contactPhone(value);
