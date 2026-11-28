@@ -129,7 +129,7 @@
 .kd-directory-page .kd-card-place svg{flex:0 0 auto;width:15px;height:15px}
 .kd-directory-page .kd-card-pills{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:30px}
 .kd-directory-page .kd-card-category,
-.kd-directory-page .kd-card-verified{display:inline-flex;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;height:30px;min-height:30px;padding:0 12px;line-height:1;font-size:12px;font-weight:700;letter-spacing:.01em;border-radius:999px;white-space:nowrap;border-width:1px;border-style:solid}
+.kd-directory-page .kd-card-verified{display:inline-flex;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;height:30px;min-height:30px;padding:0 12px;margin:0;line-height:1;font-size:12px;font-weight:700;letter-spacing:.01em;border-radius:999px;white-space:nowrap;border-width:1px;border-style:solid}
 .kd-directory-page .kd-card-category{background:#eaf2ff;color:#155fd4;border-color:#cfe2fb}
 .kd-directory-page .kd-card-verified{background:#eef6ff;color:#155fd4;border-color:#d6e8fb;margin:0}
 .kd-directory-page .kd-card-verified svg{width:15px;height:15px;flex:0 0 auto}
